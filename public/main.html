@@ -17,13 +17,30 @@ document.body.appendChild(canvas);
     var bgImage = new Image();
     bgImage.onload = function () {
       bgReady = true;
-      ctx.drawImage(bgImage, 0, 0);
+      //ctx.drawImage(bgImage, 0, 0);
+      ctx.drawImage(bgImage, 128+128+64, -32*3);
+      ctx.drawImage(bgImage, 128+128, -64);
+      ctx.drawImage(bgImage, 128+64, -32);
       ctx.drawImage(bgImage, 128, 0);
       ctx.drawImage(bgImage, 64, 32);
+      //ctx.drawImage(bgImage, -32, 32);
       ctx.drawImage(bgImage, 0, 64);
-      ctx.drawImage(bgImage, 64, 32+64);
+      ctx.drawImage(bgImage, -64, 64+32);
+      //ctx.drawImage(bgImage, 64, 32+64);
+      
+      ctx.drawImage(bgImage, 6*64, -32*2);
+      ctx.drawImage(bgImage, 5*64, -32*1);
+      ctx.drawImage(bgImage, 4*64, -32*0);
+      ctx.drawImage(bgImage, 3*64, -32*-1);
+      ctx.drawImage(bgImage, 2*64, -32*-2);
+      //ctx.drawImage(bgImage, -32, 32);
+      ctx.drawImage(bgImage, 0*64, 64);
+      ctx.drawImage(bgImage, -1*64, 64+32);
     };
     bgImage.src = "iso_mountain_river-3.png";
+    
+    var canvas2 = document.createElement("div");
+document.body.appendChild(canvas2);
     
   </script>
   
