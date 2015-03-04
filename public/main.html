@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Neonia</title>
+  <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+</head>
+<body style="position: absolute; top:0px; bottom:0px; left:0px; right:0px; overflow: hidden; padding:0px; margin: 0px;">
+  <script>
+    var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = document.body.clientWidth;
+canvas.height = document.body.clientHeight;
+document.body.appendChild(canvas);
+    
+    // Background image
+    var bgReady = false;
+    var bgImage = new Image();
+    bgImage.onload = function () {
+      bgReady = true;
+      ctx.drawImage(bgImage, 0, 0);
+      ctx.drawImage(bgImage, 128, 0);
+      ctx.drawImage(bgImage, 64, 32);
+      ctx.drawImage(bgImage, 0, 64);
+      ctx.drawImage(bgImage, 64, 32+64);
+    };
+    bgImage.src = "iso_mountain_river-3.png";
+    
+  </script>
+  
+</body>
+</html>
