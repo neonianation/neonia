@@ -17,6 +17,13 @@
     font-style: normal;  
 }   
 
+@font-face {
+    font-family: 'Montserrat';
+    src:url(<%= asset_data_uri 'Montserrat-Regular.ttf' %>);
+    font-weight: normal;
+    font-style: normal;  
+}
+
 
 @import "page";
 
@@ -32,6 +39,11 @@ body {
   
   h1, h2 {
     font-family: 'BebasNeue';
+    font-weight: normal; 
+  }
+  
+  p {
+    font-family: 'Montserrat';
     font-weight: normal; 
   }
 }
