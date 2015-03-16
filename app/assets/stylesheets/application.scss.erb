@@ -10,8 +10,80 @@
     font-style: normal;  
 }   
 
+@font-face {
+    font-family: 'BebasNeue';
+    src:url(<%= asset_data_uri 'BebasNeue Light.otf' %>);
+    font-weight: normal;
+    font-style: normal;  
+}   
+
+
 @import "page";
 
 body {
-  position: relative;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  min-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  
+  h1 {
+    font-family: 'BebasNeue';
+    font-weight: normal; 
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+// makes fancy lines on headers
+.fancy {
+  line-height: 0.5;
+  text-align: left;
+}
+.fancy span {
+  display: inline-block;
+  position: relative;  
+}
+.fancy span:before,
+.fancy span:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  top: 0;
+  width: 5000px;
+}
+.fancy span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.fancy span:after {
+  left: 100%;
+  margin-left: 15px;
+}
+
+
+// vertical centering without tables
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
 }
