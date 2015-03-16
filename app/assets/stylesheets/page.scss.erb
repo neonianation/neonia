@@ -5,15 +5,47 @@
 #home {
   background: url(<%= asset_data_uri 'backdrop.jpg' %>) no-repeat center center fixed;
   background-size: cover;
-  
-  font-family: 'BebasNeue';
-  font-weight: bold;
-  
-  min-width: 100%;
-  
-  padding: 10% 15%;
+  min-height: 100%;
   
   h1 {
-    color: white; 
+    color: rgba(255,255,255,1);
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, .6);
   }
+  
+  // dark overlay over background picture
+  .overlay {
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    padding: 10% 15%;
+    
+    // create spacing so that header is never over text if screen size is small or extra-small
+    .spacing {
+      min-height: 50px;
+    }
+  }
+}
+
+.page {
+  padding: 3% 15%;
+  width: 100%; 
+  position: static;
+}
+
+#new-world {
+  @extend .page;
+}
+
+#action-plan {
+  @extend .page;
+}
+
+#join-us {
+  @extend .page;
 }

@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  #homeResize function makes sure home bg image is same height as dark overlay
+  homeResize = ->
+    $("#home").height($("#home > .overlay").outerHeight())
+  
+  $(window).resize(homeResize).triggerHandler "resize"
+    
