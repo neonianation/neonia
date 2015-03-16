@@ -6,6 +6,7 @@
   background: url(<%= asset_data_uri 'backdrop.jpg' %>) no-repeat center center fixed;
   background-size: cover;
   min-height: 100%;
+  transition: background-position 1s ease-out;
   
   h1 {
     color: rgba(255,255,255,1);
@@ -27,7 +28,7 @@
     
     // create spacing so that header is never over text if screen size is small or extra-small
     .spacing {
-      min-height: 50px;
+      //min-height: 50px;
     }
   }
 }
