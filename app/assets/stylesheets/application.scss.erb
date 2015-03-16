@@ -1,0 +1,17 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// import fonts
+@font-face {
+    font-family: 'BebasNeue';
+    src:url(<%= asset_data_uri 'BebasNeue Bold.otf' %>);
+    font-weight: bold;
+    font-style: normal;  
+}   
+
+@import "page";
+
+body {
+  position: relative;
+}
