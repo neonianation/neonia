@@ -9,14 +9,7 @@ $ ->
   
   $(window).resize(homeResize).triggerHandler "resize"
   homeResize
-  #smooth scrolling from https://css-tricks.com/snippets/jquery/smooth-scrolling/
-#  $('a[href*=#]:not([href=#])').bind 'click', (event) ->
-#    if location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') and location.hostname == this.hostname
-#      target = $(this.hash)
-#      target = if target.length then target else $('[name=' + this.hash.slice(1) +']')
-#      if target.length
-#        $('html,body').animate({
-#          scrollTop: target.offset().top
-#        }, 1000);
-#        return false;
   
+  # close mobile menu on click. adapted from: http://stackoverflow.com/questions/16680543/hide-twitter-bootstrap-nav-collapse-on-click
+  $('.nav a').on 'click', ->
+    $(".navbar-toggle:visible").click() #bootstrap 3.x by Richard

@@ -48,6 +48,17 @@ body {
   }
 }
 
+
+// navbar hover should be red
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: $brand-danger;
+}
+
+// navbar active should be gray background
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: rgba(255, 255, 255, 0.3); 
+}
+
 .bold {
   font-weight: bold;
 }
@@ -82,11 +93,17 @@ body {
 }
 
 
-// remove navbar
-@media (min-width: $screen-sm-min) {
-  .navbar {    
-    font-family: 'BebasNeue';
-    font-weight: bold;
-    font-size: $font-size-large;
+// navbar styles
+.navbar {    
+  font-family: 'BebasNeue';
+  font-weight: bold;
+  font-size: $font-size-large;
+  
+  // only if collapsed show background
+  @media (max-width: $screen-sm-min) {
+    background-color: $gray-lighter !important;
+    border-color: rgba(200, 200, 200, 1.0) !important;
   }
+  
 }
+
