@@ -21,14 +21,11 @@
     right: 0px;
     width: 100%;
     padding: 10% 15%;
-    
-    // create spacing so that header is never over text if screen size is small or extra-small
-    .spacing {
-      //min-height: 50px;
-    }
+
   }
 }
 
+// page/section style. .page wraps around div so that we can have accurate scrollspy and scrolling behavior that is ruined by fixed navbar otherwise
 .page {
   padding: 0%;
   margin: 0%;
@@ -48,6 +45,8 @@
 #new-world {
   @extend .page;
   
+  
+  // hover icons that look beautiful
   .hover-icon {
     background-color: #E3E3E3;
     width: 70px;
@@ -59,6 +58,22 @@
     transition: all .2s cubic-bezier(0.5, -0.7, 0.67, 0.7);
     margin: auto; // center horizontally
     margin-top: 20px;
+  }
+  
+  .hover-icon.active {
+    background-color: $brand-danger; 
+
+    //@include gradient-vertical($brand-danger, darken($brand-danger, 5%));
+    transform: scale(1.1);
+    
+    box-shadow: 0px 0px 4px rgba(217, 83, 79,.7);
+    
+    color: white;
+    
+    .round-icon {
+      //border: none;
+      border-color: darken($brand-danger, 10%); 
+    }
   }
   
   .hover-icon::before {
@@ -79,16 +94,20 @@
     transition: transform .2s cubic-bezier(0.5, -0.7, 0.67, 0.7);
   }
   
-  .hover-icon:hover {
-    background-color: darkred;
+  .hover-icon:not(.active):hover {
+    background-color: $brand-danger;
     color: white;
     transition: none;
+    cursor: pointer;
+    
+    .round-icon {
+      border-color: $brand-danger;
+      transform: scale(1.2);
+      transition: none;
+    }
   }
   
-  .round-icon:hover {
-    transform: scale(1.2);
-    transition: none;
-  }
+
 }
 
 #action-plan {
