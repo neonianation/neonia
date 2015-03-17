@@ -32,8 +32,9 @@
 <div id="new-world" name="#new-world" data-menu-offset="-9">
   <div>
     <h1 class="bold fancy"
-        data-100-top="color: rgb(217, 83, 79);"
-        data-200-top="color: rgb(51, 51, 51);"><span>New World</span></h1>
+        data-50-top="color: rgb(217, 83, 79);"
+        data-100-top="color: rgb(51, 51, 51);"
+        data-anchor-target="#new-world > div"><span>New World</span></h1>
     <p>Ever since the beginning of our time, poverty, malnutrition, and environmental exploitation have been part of the human story. They have been around for so long that many have stopped questioning their presence, even though there is nothing inherently natural about them. In fact, there is overwhelming scientific evidence that our planet provides sufficient resources for all of us.<br/><br/>
 
   Never in history before have there been more<br/><br/>
@@ -43,9 +44,9 @@
     <div class="row">
 
       <% hover_icons = ["a", "b", "c"] %>
-      <% hover_icons.each do |icon| %>
+      <% hover_icons.each_with_index do |icon, i| %>
         <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="hover-icon">
+          <div class="hover-icon<%= i == 0 ? ' active' : '' %>">
             <i class="round-icon"></i>
           </div>
         </div>
