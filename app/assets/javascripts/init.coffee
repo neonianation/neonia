@@ -1,4 +1,6 @@
 $ ->
+  'use strict'
+  
   s = skrollr.init()
   
   $(document).on 'page:load', ->
