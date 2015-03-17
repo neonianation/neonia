@@ -21,7 +21,7 @@ $ ->
         return 500;
 
         #But you could calculate a value based on the current scroll position (`currentTop`) and the target scroll position (`targetTop`).
-        return Math.abs(currentTop - targetTop) * 10;
+        #return Math.abs(currentTop - targetTop) * 10;
     ,
 
     #By default skrollr-menu will only react to links whose href attribute contains a hash and nothing more, e.g. `href="#foo"`.
@@ -34,5 +34,6 @@ $ ->
 
     #This event is triggered right before we jump/animate to a new hash.
     change: (newHash, newTopPosition) ->
-        #Do stuff
+      $(".navbar-toggle").click()
+      return 0;
 })
