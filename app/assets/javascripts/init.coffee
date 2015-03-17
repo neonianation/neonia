@@ -33,7 +33,5 @@ $ ->
     complexLinks: false,
 
     #This event is triggered right before we jump/animate to a new hash.
-    change: (newHash, newTopPosition) ->
-      $(".navbar-toggle").click()
-      return 0;
+    #change: (newHash, newTopPosition) ->
 })
