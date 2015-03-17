@@ -1,10 +1,14 @@
 $ ->
   #homeResize function makes sure home bg image is same height as dark overlay
   homeResize = ->
-    $("#home").height($("#home > .overlay").outerHeight())
+    $("#home > .overlay").innerHeight($(window).height())
+    $("#home").height($("#home > .overlay").innerHeight())
+    skrollr.init().refresh();
+    $('[data-spy="scroll"]').each ->
+      $spy = $(this).scrollspy('refresh')
   
   $(window).resize(homeResize).triggerHandler "resize"
-  
+  homeResize
   #smooth scrolling from https://css-tricks.com/snippets/jquery/smooth-scrolling/
 #  $('a[href*=#]:not([href=#])').bind 'click', (event) ->
 #    if location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') and location.hostname == this.hostname
