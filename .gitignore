@@ -15,7 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
-./cache
+.cache
 /public/assets/*
 
 # Ignore all .env files
