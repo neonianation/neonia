@@ -4,9 +4,9 @@ $ ->
   
   #homeResize function makes sure home bg image is same height as dark overlay
   homeResize = ->
-    if $("#home > .overlay").innerHeight() < $(window).height()
-      $("#home > .overlay").innerHeight($(window).height())
-      $("#home").height($("#home > .overlay").innerHeight())
+    if $("#home > .overlay").height() < $(window).height()
+      $("#home > .overlay").height($(window).height())
+      $("#home").height($("#home > .overlay").height())
     skrollr.init().refresh()
     $('[data-spy="scroll"]').each ->
       $spy = $(this).scrollspy('refresh')
