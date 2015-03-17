@@ -1,13 +1,17 @@
 $ ->
   'use strict'
   
-  s = skrollr.init()
   
-  $(document).on 'page:load', ->
-    skrollr.init().refresh(); 
+  if !(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent or navigator.vendor or  window.opera)
+    s = skrollr.init({
+    forceHeight: false
+    })
   
-  #The options (second parameter) are all optional. The values shown are the default values.
-  skrollr.menu.init(s, {
+    #$(document).on 'page:load', ->
+    #  skrollr.init().refresh(); 
+  
+    #The options (second parameter) are all optional. The values shown are the default values.
+    skrollr.menu.init(s, {
     #skrollr will smoothly animate to the new position using `animateTo`.
     animate: true,
 
@@ -36,4 +40,4 @@ $ ->
 
     #This event is triggered right before we jump/animate to a new hash.
     #change: (newHash, newTopPosition) ->
-})
+    })
