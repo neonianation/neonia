@@ -1,6 +1,9 @@
 $ ->
   s = skrollr.init()
   
+  $(document).on 'page:load', ->
+    skrollr.init().refresh(); 
+  
   #The options (second parameter) are all optional. The values shown are the default values.
   skrollr.menu.init(s, {
     #skrollr will smoothly animate to the new position using `animateTo`.
