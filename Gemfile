@@ -37,9 +37,10 @@ gem 'skrollr-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Using dotenv for storing environment variables
+gem 'dotenv-rails'
+
 group :development, :test do
-  # Using dotenv for storing environment variables
-  gem 'dotenv-rails'
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
