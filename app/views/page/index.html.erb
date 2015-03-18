@@ -43,12 +43,12 @@
 
     <div class="row">
 
-      <% hover_icons = ["a", "b", "c"] %>
+      <% hover_icons = ["icon-users", "icon-coin-dollar", "icon-library", "icon-peace-icon", "icon-leaf", "icon-heart"] %>
       <% hover_icons.each_with_index do |icon, i| %>
         <div class="col-xs-4 col-sm-3 col-md-2">
           <div class="hover-icon<%= i == 0 ? ' active' : '' %>">
             <i class="round-icon">
-              <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+              <span class="<%= icon %>" aria-hidden="true"></span>
             </i>
           </div>
         </div>
