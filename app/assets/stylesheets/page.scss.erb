@@ -34,14 +34,20 @@
   }
 }
 
+// spacing between home and first section
+#spacing {
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+
 // page/section style. .page wraps around div so that we can have accurate scrollspy and scrolling behavior that is ruined by fixed navbar otherwise
 .page {
-  padding: 0%;
-  margin: 0%;
+  padding: 0px;
+  margin: 0px;
   width: 100%; 
   position: relative;
   top: -41px;
-  padding-top: 41px;
   margin-bottom: -41px;
   overflow-x: hidden;
   
@@ -145,11 +151,70 @@
     }
   }
   
+  // tab menu
+  .tab-content {
 
+    margin-top: 30px;
+    
+    .tab-pane {
+      visibility: visible !important;
+    }
+
+    .tab-pane.in {
+      display: block;
+    }
+
+  }
+  
+  
 }
 
 #action-plan {
   @extend .page;
+  
+  // down arrow div
+  .arrow {
+    text-align: center;
+    font-size: 2em;
+    color: rgba(0,0,0,.3);
+    text-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  }
+  
+  // fix bootstrap panel
+  .panel {
+    margin-bottom: 10px; 
+    .label {
+      float: right;
+      padding: 0.4em;
+    }
+    
+    .panel-heading, .panel-body {
+      margin-left: 100px;
+      border-left: 1px solid #DDD;
+    }
+    
+    // image
+    .icon {
+      float:left;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  // each step of the action plan
+  .step {
+    
+    .icon {
+      margin: auto;
+      border-radius: 4px;
+      border: 2px dashed black;
+      width: 70px;
+      height: 70px;
+      text-align: center;
+      font-size: $font-size-large + 5;
+      line-height: 70px;
+    }
+  }
 }
 
 #join-us {
