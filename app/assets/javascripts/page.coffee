@@ -60,7 +60,12 @@ $ ->
   $('.nav a').on 'click', ->
     $(".navbar-toggle:visible").click() #bootstrap 3.x by Richard
 
-  $('.hover-icon').click ->
-    $('.hover-icon.active').removeClass("active")
-    $(this).addClass("active")
-    
+  $('#new-world .hover-icon').click ->
+    if !$(this).hasClass("active")
+      # make the right button highlighted
+      $('#new-world .hover-icon.active').removeClass("active")
+      $(this).addClass("active")
+
+      # make the right tab show up
+      $('#new-world .tab-pane.activated').removeClass("activated").hide()
+      $('#new-world .tab-pane:nth-child('+(parseInt($(this).attr("id").substr("new-world_icon_".length))+1)+')').addClass("activated").fadeIn()

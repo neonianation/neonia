@@ -27,6 +27,13 @@
     font-style: normal;  
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    src:url(<%= asset_data_uri 'Montserrat-Bold.ttf' %>);
+    font-weight: bold;
+    font-style: normal;  
+}
+
 
 @import "page";
 
@@ -44,9 +51,13 @@ body {
   min-height: 100%;
   overflow-x: hidden;
   
-  h1, h2 {
+  h1, h2, h3, .heading {
     font-family: 'BebasNeue';
-    font-weight: normal; 
+  }
+  
+  .heading {
+    font-size: 120%; 
+    line-height: normal;
   }
   
   p {
@@ -70,7 +81,9 @@ body {
   font-weight: bold;
 }
 
-
+.emphasis {
+  color: $brand-danger;
+}
 
 
 #backup {
@@ -118,4 +131,3 @@ body {
   }
   
 }
-

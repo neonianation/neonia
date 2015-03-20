@@ -24,6 +24,7 @@
 </div>
 
 
+<div id="spacing"></div>
 <div id="new-world" name="#new-world" data-menu-offset="-9">
   <div>
     <hr
@@ -41,19 +42,47 @@
 
   We know that a planet on which every human being gets to live to their fullest potential is possible. Let's make it happen.</p>
 
-    <div class="row">
+    <div role="tabpanel">
+      <div class="row">
 
-      <% hover_icons = ["icon-users", "icon-coin-dollar", "icon-library", "icon-peace-icon", "icon-leaf", "icon-heart"] %>
-      <% hover_icons.each_with_index do |icon, i| %>
-        <div class="col-xs-4 col-sm-3 col-md-2">
-          <div class="hover-icon<%= i == 0 ? ' active' : '' %>">
-            <i class="round-icon">
-              <span class="<%= icon %>" aria-hidden="true"></span>
-            </i>
+        <% hover_icons = ["icon-users", "icon-coin-dollar", "icon-library", "icon-peace-icon", "icon-leaf", "icon-heart"] %>
+        <% hover_icons.each_with_index do |icon, i| %>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <div id="new-world_icon_<%= i %>" class="hover-icon<%= i == 0 ? ' active' : '' %>">
+              <i class="round-icon">
+                <span class="<%= icon %>" aria-hidden="true"></span>
+              </i>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
 
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane well activated in">
+            <span class="heading bold  emphasis">Society</span>
+            We are establishing a society in which <span class="bold emphasis">everyone can thrive</span>. People have <span class="bold emphasis">absolute freedom</span> over how they spend their life. The <span class="bold emphasis">provision of basic needs</span> - food, water, shelter, health care, education - is always guaranteed. 
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Economy</span>
+          We are creating an economy that <span class="bold emphasis">maximizes social and environmental profits</span>. Financial profits are <span class="bold emphasis">shared among all of us</span>. Every company upholds standards of <span class="bold emphasis">sustainability, transparency, and ethicality</span>.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Politics</span>
+          We are committed to an <span class="bold emphasis">equal power structure</span>: a system in which every individual has the same amount of political decision-making power. <span class="bold emphasis">Decisions are made collectively and directly</span> by the individuals who will be affected by them.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Peace</span>
+          We are dedicated to creating a <span class="bold emphasis">peaceful planet Earth</span>, on which people of different value systems live together in harmony and collaboration. <span class="bold emphasis">Safety of mental and physical health</span> is guaranteed. We resolve conflict through <span class="bold emphasis">collectively developing solutions</span> with all involved parties.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Sustainability</span>
+          We are devoted to cultivating <span class="bold emphasis">healthy and flourishing ecosystems</span>. The <span class="bold emphasis">well-being of nature</span> is essential for our lives and the lives of future generations. We recognize dependence on the environment as a <span class="bold emphasis">great privilege as well as a great responsibility</span>.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Culture</span>
+          We are fostering a culture based on <span class="bold emphasis">community and collaboration</span>. All human beings are enabled, encouraged, and empowered to <span class="bold emphasis">follow their hearts and realize their dreams</span>.
+        </div>        
+      </div>
     </div>
   </div>
 </div>
@@ -70,6 +99,73 @@
       data-100-top="color: rgb(51, 51, 51);"
       data-anchor-target="#action-plan > div"><span>Action Plan</span></h1>
 
+
+    <div class="panel panel-default">
+      <div class="icon">
+      </div>
+      <div class="panel-heading">
+        <h3 class="panel-title bold">Personal Change <span class="label label-danger">Step 1</span></h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+    
+    <div class="arrow">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="icon">
+      </div>
+      <div class="panel-heading">
+        <h3 class="panel-title bold">Systemic Change <span class="label label-danger">Step 2</span></h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+    
+    <div class="arrow">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="icon">
+      </div>
+      <div class="panel-heading">
+        <h3 class="panel-title bold">Global Change <span class="label label-danger">Step 3</span></h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+    
+    
+    <div class="row step">
+      <div class="col-md-2">
+        <div            
+            data-0-center-top="opacity: 0.0; margin-left: -100%;"
+            data--40-center-top="opacity: 1.0; margin-left: -0%;"
+            data-anchor-target="#action-plan > div">
+          <div class="icon"
+            data-0-center-top="border-top-color: rgba(217, 83, 79, 0.0); transform[bounce]:rotate(0deg);"
+            data--10-center-top="border-top-color: rgba(217, 83, 79, 1.0); transform[bounce]:rotate(90deg); border-left-color: rgba(217, 83, 79, 0.0);"
+            data--20-center-top="border-left-color: rgba(217, 83, 79, 1.0); transform[bounce]:rotate(180deg); border-bottom-color: rgba(217, 83, 79, 0.0);"
+            data--30-center-top="border-bottom-color: rgba(217, 83, 79, 1.0); transform[bounce]:rotate(270deg); border-right-color: rgba(217, 83, 79, 0.0);"
+            data--40-center-top="border-right-color: rgba(217, 83, 79, 1.0); transform[bounce]:rotate(360deg);"
+           data-anchor-target="#action-plan > div">
+            <p>1</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10" >
+        <div>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+      </div>
+    </div>
+    
     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
   
     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
