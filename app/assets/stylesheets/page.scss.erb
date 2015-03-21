@@ -188,16 +188,54 @@
       padding: 0.4em;
     }
     
-    .panel-heading, .panel-body {
-      margin-left: 100px;
+    .panel-heading, .panel-quote, .panel-body {
+      margin-left: 50px;
       border-left: 1px solid #DDD;
+      border-top-left-radius: 0px; // remove left rounded border
+      
+      // increase margin if not phone
+      @media (min-width: $screen-sm-min) {
+        margin-left: 80px;
+      }
+      @media (min-width: $screen-md-min) {
+        margin-left: 100px;
+      }
+    }
+    
+    // make panel-heading emphasized
+    .panel-heading {
+      background-color: $brand-danger;
+      color: white;
+    }
+    
+    .panel-quote {
+      @extend .panel-heading;
+      color: $text-color;
+      background-color: #F5F5F5;
+      border-color: #DDD;
     }
     
     // image
     .icon {
       float:left;
-      width: 100px;
-      height: 100px;
+      width: 50px;
+      height: 60px;
+      font-size: 30px;
+      text-align: center;
+      padding-top: 20px;
+      color: $brand-danger;
+      
+      // increase width if not phone
+      @media (min-width: $screen-sm-min) {
+        width: 80px;
+      }
+      @media (min-width: $screen-md-min) {
+        width: 100px;
+      }
+      
+      span {
+        margin: auto;
+      }
     }
   }
   
@@ -219,4 +257,8 @@
 
 #join-us {
   @extend .page;
+}
+
+quote {
+  font-style: italic;
 }
