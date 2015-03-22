@@ -1,0 +1,64 @@
+<div id="spacing"></div>
+<div id="new-world" name="#new-world" data-menu-offset="-9">
+  <div>
+    <hr
+      data-50-top="border-color: rgb(217, 83, 79);"
+      data-100-top="border-color: rgb(51, 51, 51);"
+      data-anchor-target="#new-world > div"     
+        />
+    <h1 class="bold fancy"
+        data-50-top="color: rgb(217, 83, 79);"
+        data-100-top="color: rgb(51, 51, 51);"
+        data-anchor-target="#new-world > div"><span>New World</span></h1>
+    <p>Ever since the beginning of our time, poverty, malnutrition, and environmental exploitation have been part of the human story. They have been around for so long that many have stopped questioning their presence, even though there is nothing natural about them. In fact, there is overwhelming scientific evidence that our planet provides sufficient resources for all of us.<br/><br/>
+
+  Currently, over three billion people live on less than $2.50 a day, the world's richest 80 people own as much wealth as the bottom 50% of humanity, and by 2030 we will have irreversibly damaged the environment our life so essentially depends upon.<br/><br/>
+      
+      Now imagine what our world could be. If every human being got to unfold their talent and achieve greatness. If ... If ... This world would be one massively thriving, abundant, and beautiful celebration of life.<br/><br/>
+      
+  We know that creating this world is possible, so let's make it happen.</p>
+
+    <div role="tabpanel">
+      <div class="row">
+
+        <% hover_icons = ["icon-users", "icon-coin-dollar", "icon-library", "icon-peace", "icon-leaf", "icon-heart"] %>
+        <% hover_icons.each_with_index do |icon, i| %>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <div id="new-world_icon_<%= i %>" class="hover-icon<%= i == 0 ? ' active' : '' %>">
+              <i class="round-icon">
+                <span class="<%= icon %>" aria-hidden="true"></span>
+              </i>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane well activated in">
+            <span class="heading bold  emphasis">Society</span>
+            We are establishing a society in which <span class="bold emphasis">everyone can thrive</span>. People have <span class="bold emphasis">absolute freedom</span> over how they spend their life. The <span class="bold emphasis">provision of basic needs</span> - food, water, shelter, health care, education - is always guaranteed. 
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Economy</span>
+          We are creating an economy that <span class="bold emphasis">maximizes social and environmental profits</span>. Financial profits are <span class="bold emphasis">shared among all of us</span>. Every company upholds standards of <span class="bold emphasis">sustainability, transparency, and ethicality</span>.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Politics</span>
+          We are committed to an <span class="bold emphasis">equal power structure</span>: a system in which every individual has the same amount of political decision-making power. <span class="bold emphasis">Decisions are made collectively and directly</span> by the individuals who will be affected by them.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Peace</span>
+          We are dedicated to creating a <span class="bold emphasis">peaceful planet Earth</span>, on which people of different value systems live together in harmony and collaboration. <span class="bold emphasis">Safety of mental and physical health</span> is guaranteed. We resolve conflict through <span class="bold emphasis">collectively developing solutions</span> with all involved parties.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Sustainability</span>
+          We are devoted to cultivating <span class="bold emphasis">healthy and flourishing ecosystems</span>. The <span class="bold emphasis">well-being of nature</span> is essential for our lives and the lives of future generations. We recognize dependence on the environment as a <span class="bold emphasis">great privilege as well as a great responsibility</span>.
+        </div>
+        <div class="tab-pane well">
+          <span class="heading bold emphasis">Culture</span>
+          We are fostering a culture based on <span class="bold emphasis">community and collaboration</span>. All human beings are enabled, encouraged, and empowered to <span class="bold emphasis">follow their hearts and realize their dreams</span>.
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
