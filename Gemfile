@@ -40,6 +40,9 @@ gem 'skrollr-rails'
 # Using dotenv for storing environment variables
 gem 'dotenv-rails'
 
+# Using mailchimp for signup
+gem 'gibbon'
+
 group :development, :test do
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
