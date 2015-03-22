@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  
+  match 'signup' => 'page#signup', :via => :post
+  
   root 'page#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
