@@ -1,3 +1,14 @@
+#addError function creates an alert
+
+this.clearErrors = clearErrors = ->
+  $("#user-form-errors").html("")
+
+this.addError = addError = (message) ->
+  alert = $("<div>")
+  alert.addClass("alert alert-danger alert-dismissible fade in")
+  alert.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + message)
+  $("#user-form-errors").append(alert)
+
 $ ->
   
   'use strict'
@@ -43,7 +54,6 @@ $ ->
       #change: (newHash, newTopPosition) ->
       })
   
-  
   #homeResize function makes sure home bg image is same height as dark overlay
 #  homeResize = ->
 #    if $("#home > .overlay").height() < $(window).height()
@@ -82,6 +92,10 @@ $ ->
     $(this).parent().next().slideToggle() # toggle help text
     $('#user-form .email').slideToggle() # toggle email field
     
+  # clear old image
+  $('#user-form input[type="file"]').val('')
+  
+  
   # check for focus event
   $('#user-form input[type="file"]').focus ->
     $(this).parent().addClass("active")
@@ -102,12 +116,17 @@ $ ->
     fsize = input.files[0].size
     ftype = input.files[0].type
     fname = input.files[0].name
+     
+    # get only the first part of filetype
+    ftype = ftype.split("/")[0]
       
     switch ftype
-      when 'image/png', 'image/gif', 'image/jpeg', 'image/pjpeg'
-        alert "Acceptable image file!"
+      when 'image'
+        break
       else
-        alert 'Unsupported File!'
+        clearErrors()
+        addError("Only image files are supported.")
+        $('#user-form input[type="file"]').val('')
     
     if input.files && input.files[0]
       reader = new FileReader()

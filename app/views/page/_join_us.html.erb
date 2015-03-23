@@ -13,6 +13,11 @@
         data-anchor-target="#join-us > div"><span>Join us</span></h1>
     
     <div id="user-form">
+      
+      <div id="user-form-errors">
+      
+      </div>
+      
       <div class="row">
           
         <%= form_for @user, url: {action: "signup"}, :html => {:multipart => true}, :remote => true do |f| %>
@@ -20,7 +25,7 @@
           <!-- PHOTO COL -->
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="upload-photo center-block">
-              <%= f.file_field :photo %>
+              <%= f.file_field :photo, :value => "", :accept => "image/*"%>
             </div>
           </div>
         
