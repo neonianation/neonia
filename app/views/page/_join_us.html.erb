@@ -12,7 +12,7 @@
         data-100-top="color: rgb(51, 51, 51);"
         data-anchor-target="#join-us > div"><span>Join us</span></h1>
     
-    <div id="user-form">
+    <div id="user-form" class="hidden">
       
       <div id="user-form-errors">
       
@@ -20,7 +20,7 @@
       
       <div class="row">
           
-        <%= form_for @user, url: {action: "signup"}, :html => {:multipart => true}, :remote => true do |f| %>
+        <%= form_for @user, url: {action: "signup"}, :html => {:id => "fileupload", :multipart => true}, :remote => true do |f| %>
         
           <!-- PHOTO COL -->
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -50,7 +50,7 @@
               <%= f.text_field :email, :class => "form-control" %>
               <span class="help-block">Your email will never be shared with anyone.</span>
             </div>
-            <%= f.submit "Join Neonia", :class => "btn btn-danger btn-lg btn-block" %>
+            <%= f.submit "Join Neonia", :class => "btn btn-danger btn-lg btn-block submit-form" %>
           </div>        
         
         <% end %>
@@ -63,13 +63,23 @@
         </div>
       </div>
     </div>
-
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-  
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-  
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <div id="user-success">
+      <div class="row well">
+        <!-- PHOTO COL -->
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <div class="photo center-block">
+          </div>
+        </div>
+        
+        <!-- TEXT COL -->
+        <div class="social-connect col-lg-8 col-md-8 col-sm-6 col-xs-12">
+          <h1><span class="bold emphasis">Welcome to Neonia</span></h1>
+          <p>This is a big moment, Finn. You have joined our visionary movement, creating a better world in which all human beings thrive.</p>
+          <h3 class="bold">Thank you!</h3>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
