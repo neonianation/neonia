@@ -60,7 +60,7 @@ body {
     line-height: normal;
   }
   
-  p {
+  p, input, label {
     font-family: 'Montserrat';
     font-weight: normal; 
   }
@@ -130,4 +130,10 @@ body {
     border-color: rgba(200, 200, 200, 1.0) !important;
   }
   
+}
+
+// correct navbar
+.form-control:active, .form-control:focus {
+  border-color: $brand-danger;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(217, 83, 79, 0.6);
 }

@@ -1,3 +1,3 @@
 'use strict'
   
-$("#user-form").html("Thanks, <%= @user.name %>. You have been signed up.")
+$("#user-form").next().html("Thanks, <%= @user.name %>, for joining us! You opted <%= @user.subscribe %> <%= @user.subscribe ? 'in' : 'out' %>.<br/><%= @user.photo.url %>")
