@@ -11,6 +11,7 @@ class PageController < ApplicationController
     @user = User.new
     @user.name = params[:user][:name]
     @user.photo = params[:user][:photo]
+    @user.subscribe = params[:user][:subscribe]
     
     # if user wants to subscribe to newsletter, then record email
     #if params[:user][:subscribe] == 1
@@ -21,9 +22,8 @@ class PageController < ApplicationController
     
     
     respond_to do |format|
-      if @user.save
-        format.js
-      end
+      @user.save
+      format.js
     end
     #if @user.save
 
