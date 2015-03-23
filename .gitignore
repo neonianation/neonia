@@ -17,6 +17,7 @@
 /tmp
 .cache
 /public/assets/*
+/public/system/*
 
 # Ignore all .env files
 .env*

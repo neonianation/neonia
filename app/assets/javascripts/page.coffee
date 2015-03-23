@@ -1,7 +1,7 @@
 $ ->
   
   'use strict'
-
+  
   initSkrollr = ->
     if !(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent or navigator.vendor or  window.opera)
       s = skrollr.init({
@@ -45,21 +45,23 @@ $ ->
   
   
   #homeResize function makes sure home bg image is same height as dark overlay
-  homeResize = ->
-    if $("#home > .overlay").height() < $(window).height()
-      $("#home > .overlay").height($(window).height())    
-    $("#home").height($("#home > .overlay").height())
-    initSkrollr()
-    $('[data-spy="scroll"]').each ->
-      $spy = $(this).scrollspy('refresh')
-  
-  $(window).resize(homeResize).triggerHandler "resize"
-  homeResize()
+#  homeResize = ->
+#    if $("#home > .overlay").height() < $(window).height()
+#      $("#home > .overlay").height($(window).height())    
+#    $("#home").height($("#home > .overlay").height())
+#    initSkrollr()
+#    $('[data-spy="scroll"]').each ->
+#      $spy = $(this).scrollspy('refresh')
+#  
+#  $(window).resize(homeResize).triggerHandler "resize"
+#  homeResize()
   
   # close mobile menu on click. adapted from: http://stackoverflow.com/questions/16680543/hide-twitter-bootstrap-nav-collapse-on-click
   $('.nav a').on 'click', ->
     $(".navbar-toggle:visible").click() #bootstrap 3.x by Richard
 
+    
+  # show the correct tab when clicking on the new-world icons
   $('#new-world .hover-icon').click ->
     if !$(this).hasClass("active")
       # make the right button highlighted
@@ -69,3 +71,54 @@ $ ->
       # make the right tab show up
       $('#new-world .tab-pane.activated').removeClass("activated").hide()
       $('#new-world .tab-pane:nth-child('+(parseInt($(this).attr("id").substr("new-world_icon_".length))+1)+')').addClass("activated").fadeIn()
+      
+  # if checkbox is NOT checked, then hide e-mail field
+  if !$('#user-form input[type="checkbox"]').is(':checked')
+    $('#user-form .email').hide()
+  
+  # show e-mail field when checking subscribe checkbox
+  $('#user-form input[type="checkbox"]').change ->
+    $(this).parent().toggleClass("btn-success")
+    $(this).parent().next().slideToggle() # toggle help text
+    $('#user-form .email').slideToggle() # toggle email field
+    
+  # check for focus event
+  $('#user-form input[type="file"]').focus ->
+    $(this).parent().addClass("active")
+    
+  $('#user-form input[type="file"]').focusout ->
+    $(this).parent().removeClass("active")
+    
+  # show image preview
+  # script from: http://www.munocreative.com/nerd-notes/justpayme
+  $('#user-form input[type="file"]').change ->
+    readURL(this)
+    
+  readURL = (input) ->
+    
+    # validate image
+    # from: http://www.sanwebe.com/2013/10/check-input-file-size-before-submit-file-api-jquery
+    #get the file size and file type from file input field
+    fsize = input.files[0].size
+    ftype = input.files[0].type
+    fname = input.files[0].name
+      
+    switch ftype
+      when 'image/png', 'image/gif', 'image/jpeg', 'image/pjpeg'
+        alert "Acceptable image file!"
+      else
+        alert 'Unsupported File!'
+    
+    if input.files && input.files[0]
+      reader = new FileReader()
+
+      reader.onload = (e) ->
+        $('#user-form .upload-photo').css('background-image', 'url(' + e.target.result + ')')
+        $('#user-form .upload-photo').css('background-size', 'cover')
+        #$('.photoUpload, #uploadClick').hide();
+        
+      #$('.deletePhoto').show();
+      
+      reader.readAsDataURL(input.files[0])
+    
+  return

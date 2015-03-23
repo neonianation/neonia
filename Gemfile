@@ -43,6 +43,13 @@ gem 'dotenv-rails'
 # Using mailchimp for signup
 gem 'gibbon'
 
+# Using paperclip for image upload
+# and jquery-fileupload-rails for image resizing
+gem "paperclip", "~> 4.2"
+
+# AJAX file uploading
+gem 'remotipart', '~> 1.2'
+
 group :development, :test do
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

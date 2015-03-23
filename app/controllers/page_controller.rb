@@ -10,11 +10,24 @@ class PageController < ApplicationController
   def signup
     @user = User.new
     @user.name = params[:user][:name]
-    @user.email = params[:user][:email]
+    @user.photo = params[:user][:photo]
+    
+    # if user wants to subscribe to newsletter, then record email
+    #if params[:user][:subscribe] == 1
+      @user.email = params[:user][:email]
+    #else
+    #  @user.email = nil
+    #end
+    
     
     respond_to do |format|
-      format.js
+      if @user.save
+        format.js
+      end
     end
+    #if @user.save
+
+    #end
   end
   
 end

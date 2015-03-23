@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require turbolinks
 //= require skrollr
 //= require skrollr.menu
