@@ -46,6 +46,7 @@ gem 'gibbon'
 # Using paperclip for image upload
 # and jquery-fileupload-rails for image resizing
 gem "paperclip", "~> 4.2"
+gem "jquery-fileupload-rails"
 
 # AJAX file uploading
 gem 'remotipart', '~> 1.2'

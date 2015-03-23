@@ -3,7 +3,12 @@ class User < ActiveRecord::Base
   attr_accessor :subscribe, :boolean
   
     # Photo
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :photo,
+    :styles => {
+      :original => "200x200#" },
+    :convert_options => {
+      :original => "-quality 75 -strip" },
+  :default_url => "/images/:style/missing.png"
   
   # Validations
   validates_attachment_presence :photo
