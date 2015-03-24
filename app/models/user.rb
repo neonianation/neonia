@@ -17,10 +17,10 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage/, :message => "needs to be an image file"
   validates :name, presence: true
   validates :email, presence: true, if: "subscribe == '1'"
-  validates :email, format: {
-    with: /.*@.*\..*/, 
-    message: "does not appear to be a correctly formatted address" }, if: "subscribe == '1'"
-  validates :email, uniqueness: true, if: "subscribe == '1'"
+  #validates :email, format: {
+  #  with: /.*@.*\..*/, 
+  #  message: "does not appear to be a correctly formatted address" }, if: "subscribe == '1'"
+  #validates :email, uniqueness: true, if: "subscribe == '1'"
   
   
 end

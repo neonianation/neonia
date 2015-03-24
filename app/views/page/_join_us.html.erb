@@ -50,7 +50,7 @@
               <span class="help-block">Your email will never be shared with anyone.</span>
             </div>
             
-            <%= f.hidden_field :require_photo 
+            <%= f.hidden_field :require_photo, :class => "include"
 %>
             <%= f.submit "Join Neonia", :class => "btn btn-danger btn-lg btn-block submit-form" %>
           </div>        
@@ -82,6 +82,7 @@
           <p>This is a big moment, Finn. You have joined our visionary movement to create a better world in which all human beings thrive.</p>
           <h3 class="bold">Thank you!</h3>
           <p class="happy"><small><span class="icon-happy"></span> You signed up for updates on Neonia. Please check your inbox to confirm your subscription.</small></p>
+          <p class="neutral"><small><span class="icon-happy"></span> Your email was already signed up for updates on Neonia!</small></p>
           <p class="sad"><small><span class="icon-sad"></span> You opted out of updates on Neonia. If you ever change your mind, you can find a sign up box in the footer of this website.</small></p>
         </div>
       </div>

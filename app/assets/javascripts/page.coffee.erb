@@ -120,7 +120,7 @@ $ ->
       formData.append($(element).attr("name"), $(element).val())
     $('#user-form input[type="checkbox"]').each (index, element) =>
       formData.append($(element).attr("name"), if $(element).is(':checked') then 1 else 0)
-    $('#user-form input[type="hidden"]').each (index, element) =>
+    $('#user-form input[type="hidden"].include').each (index, element) =>
       formData.append($(element).attr("name"), $(element).val())
 
     $('#user-success .photo').css('background-image', 'url(' +  user_photo + ')')
