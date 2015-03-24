@@ -19,7 +19,7 @@
       
       <div class="row">
           
-        <%= form_for @user, url: {action: "signup"}, :html => {:id => "fileupload", :multipart => true}, :remote => true do |f| %>
+        <%= form_for @user, url: {action: "signup"}, :html => {:multipart => true}, :remote => true do |f| %>
         
           <!-- PHOTO COL -->
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
