@@ -315,8 +315,17 @@
     }
   }
   
-  .input-fields {
-    border-right: 2px solid $gray-light;
+  #user-form {
+    
+    .social-connect {
+      border-top: 2px solid $gray-light;
+    }
+    
+    @media (min-width: $screen-md-min) {
+      
+      .social-connect { border-top: none; }
+      .input-fields { border-right: 2px solid $gray-light; }
+    }
   }
   
   // create some spacing below clearfixes
