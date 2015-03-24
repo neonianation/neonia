@@ -1,0 +1,70 @@
+
+// executed after G+ script has loaded
+function render() {
+
+  // Additional params including the callback, the rest of the params will
+  // come from the page-level configuration.
+  var additionalParams = {
+    'clientid' : '824861402970-fpvmucs93jdogvoo9g8pnostcqbubafj.apps.googleusercontent.com',
+    'cookiepolicy' : 'single_host_origin',
+    'scope' : 'profile email',
+    'callback': signinCallback
+  };
+
+  // Attach a click listener to a button to trigger the flow.
+  var signinButton = $('#user-form .social-connect .google');
+  signinButton.click( function() {
+   gapi.auth.signIn(additionalParams); // Will use page level configuration
+  });
+}
+
+// callback after signing in
+function signinCallback(authResult) {
+  
+  if (authResult['status']['signed_in']) {
+    
+    window.addError("Successfully connected with Google+.");
+    
+    gapi.client.load('plus','v1', function(){
+     var request = gapi.client.plus.people.get({
+       'userId': 'me'
+     });
+     request.execute(function(response) {       
+       //fill in the information
+       window.setUserFormName(response.name.givenName);
+       window.setUserFormEmail(response.emails[0].value);
+       
+       // get picture in size 200x200
+       pic_url = response.image.url.split("?")[0]
+       pic_url += "?sz=200"
+       
+       window.setUserFormImage(pic_url);
+     });
+    });
+
+
+
+    
+    // Update the app to reflect a signed in user
+    // Hide the sign-in button now that the user is authorized, for example:
+     //$('#user-form .social-connect .google').css('display', 'none');
+  } else {
+    // Update the app to reflect a signed out user
+    // Possible error values:
+    //   "user_signed_out" - User is signed-out
+    //   "access_denied" - User denied access to your app
+    //   "immediate_failed" - Could not automatically log in the user
+    if(authResult['error'] == "access_denied") {
+      window.clearErrors();
+      window.addError("Connection with Google+ unsuccessful.");
+    }
+  }
+}
+
+
+$.getScript( "https://apis.google.com/js/client:platform.js?onload=render", function( data, textStatus, jqxhr ) {
+  console.log( data ); // Data returned
+  console.log( textStatus ); // Success
+  console.log( jqxhr.status ); // 200
+  console.log( "Load was performed." );
+});
