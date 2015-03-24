@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  
   match 'signup' => 'page#signup', :via => :post
   
   root 'page#index'

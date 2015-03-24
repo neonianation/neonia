@@ -51,6 +51,9 @@ gem "jquery-fileupload-rails"
 # AJAX file uploading
 gem 'remotipart', '~> 1.2'
 
+# Oauth
+gem 'omniauth'
+
 group :development, :test do
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
