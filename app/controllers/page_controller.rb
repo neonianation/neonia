@@ -20,7 +20,7 @@ class PageController < ApplicationController
       else
         @user = User.new
         @user.email = params[:user][:email]
-      end
+      end    
 
     # if user doesn't want to subscribe, then we'll
     # not record their email    
@@ -36,18 +36,31 @@ class PageController < ApplicationController
     @user.photo = params[:user][:photo] 
     
     respond_to do |format|
-      @user.save
+      
+      # indicate whether user is already subscribed to mailchimp list
+      @user_already_subscribed = false
+      
+      # subscribe to mailchimp only if there are no errors and user wants to subscribe
+      if @user.valid? and @user.subscribe == "1"
+        begin
+          gb = Gibbon::API.new
+          gb.lists.subscribe({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => @user.email}, :merge_vars => {:NAME => @user.name}, :double_optin => true})
+        rescue Gibbon::MailChimpError => e
+          
+          # if user already subscribed, then run update
+          if e.code == 214
+            gb.lists.update_member({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => @user.email}, :merge_vars => {:NAME => @user.name}})
+            @user_already_subscribed = true
+          # else run validations and add error message
+          else
+            @user.errors.add(:base, e.message)
+          end
+        end
+      end
+      
+      @user.save unless @user.errors.any?
       format.js
     end
-    #if @user.save
-
-    #end
-  end
-  
-  def create
-    auth_hash = request.env['omniauth.auth']
- 
-    render :text => auth_hash.inspect
   end
   
 end

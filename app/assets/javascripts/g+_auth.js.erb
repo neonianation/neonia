@@ -21,6 +21,8 @@ function render() {
 // callback after signing in
 function signinCallback(authResult) {
   
+  window.clearErrors();
+  
   if (authResult['status']['signed_in']) {
     
     window.addError("Successfully connected with Google+.");
@@ -55,7 +57,6 @@ function signinCallback(authResult) {
     //   "access_denied" - User denied access to your app
     //   "immediate_failed" - Could not automatically log in the user
     if(authResult['error'] == "access_denied") {
-      window.clearErrors();
       window.addError("Connection with Google+ unsuccessful.");
     }
   }
