@@ -5,7 +5,7 @@ function render() {
   // Additional params including the callback, the rest of the params will
   // come from the page-level configuration.
   var additionalParams = {
-    'clientid' : '824861402970-fpvmucs93jdogvoo9g8pnostcqbubafj.apps.googleusercontent.com',
+    'clientid' : '<%= ENV["GOOGLE_KEY"] %>',
     'cookiepolicy' : 'single_host_origin',
     'scope' : 'profile email',
     'callback': signinCallback
