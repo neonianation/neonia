@@ -1,0 +1,1 @@
+gb = Gibbon::API.new(ENV['MAILCHIMP_KEY'])
