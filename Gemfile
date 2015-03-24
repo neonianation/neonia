@@ -50,9 +50,6 @@ gem "paperclip", "~> 4.2"
 # AJAX file uploading
 gem 'remotipart', '~> 1.2'
 
-# Oauth
-gem 'omniauth'
-
 group :development, :test do
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
