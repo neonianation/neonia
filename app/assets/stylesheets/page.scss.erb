@@ -275,7 +275,7 @@
   }
   
   .upload-photo {
-    @extends .photo;
+    @extend .photo;
 
     background-color: white;
     background-image: url(<%= asset_data_uri 'user_icon.png' %>);
@@ -322,6 +322,10 @@
   // create some spacing below clearfixes
   .clearfix {
     margin-bottom: 20px;
+  }
+  
+  .happy {
+    color: darken($brand-success, 10%); 
   }
 }
 

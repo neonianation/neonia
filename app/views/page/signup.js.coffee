@@ -11,6 +11,12 @@ window.addError("<%= error %>")
 
 <% end
 else %>
-$("#user-form").next().html("Thanks, <%= @user.name %>, for joining us! You opted <%= @user.subscribe %> <%= @user.subscribe ? 'in' : 'out' %>.<br/><%= @user.photo.url %>")
 $("#user-form").slideUp()
+$("#user-success").removeClass("hide")
+<% if @user.subscribe == "0" %>
+$("#user-success .happy").hide(0)
+<% else %>
+$("#user-success .sad").hide(0)
+<% end %>
+$("#user-success").slideDown()
 <% end %>

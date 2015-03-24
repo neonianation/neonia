@@ -101,25 +101,29 @@ $ ->
   $('#user-form input[type="submit"]').replaceWith(newButton)
   $('#user-form .submit-form').attr("data-loading-text", "Loading...")
   
-  formData = new FormData()
+  # INIT VARIABLES
+  user_photo = 0
   
   $('#user-form .submit-form').click ->
     
     # toggle loading state
     $(this).button('loading')
     
+    formData = new FormData()
+    
+    # add user photo
+    formData.append('user[photo]', user_photo)
     # collect form data from text and checkbox
     $('#user-form input[type="text"]').each (index, element) =>
       formData.append($(element).attr("name"), $(element).val())
     $('#user-form input[type="checkbox"]').each (index, element) =>
       formData.append($(element).attr("name"), if $(element).is(':checked') then 1 else 0)
 
-    #$.on "ajax:error", (e, xhr, status, error) ->
-    #  alert "failed"
+    $('#user-success .photo').css('background-image', 'url(' +  user_photo + ')')
 
     # send request over
     $.ajax({
-      url: "test", # $("#user-form form").attr("action"),
+      url: $("#user-form form").attr("action"),
       data: formData,
       cache: false,
       contentType: false,
@@ -130,7 +134,7 @@ $ ->
   # HIDE E-MAIL FIELD
   # if subscribe checkbox is NOT checked, then hide e-mail field
   if !$('#user-form input[type="checkbox"]').is(':checked')
-    $('#user-form .email').hide()
+    $('#user-form .email').hide(0)
   
   # TOGGLE E-MAIL FIELD
   # show e-mail field when checking subscribe checkbox
@@ -154,7 +158,6 @@ $ ->
     # show processing
     $('#user-form .upload-photo').removeAttr("style")
     $('#user-form .upload-photo').css('background-image', "url( <%= asset_data_uri 'processing.png' %> )")
-    $('#user-form .upload-photo').css('background-size', 'cover')
     
     # start processing
     readURL(this)
@@ -189,19 +192,14 @@ $ ->
         image = new Image()
         image.src = e.target.result
         
-        scaled_image = 0
+
         
         image.onload = ->
-          scaled_image = scaleImage(image, 200, 200)
+          user_photo = scaleImage(image, 200, 200)
         
-          # reset form data
-          formData = new FormData()
-          formData.append('user[photo]', scaled_image)
-
           # preview image
           $('#user-form .upload-photo').removeAttr("style")
-          $('#user-form .upload-photo').css('background-image', 'url(' +  scaled_image + ')')
-          $('#user-form .upload-photo').css('background-size', 'cover')
+          $('#user-form .upload-photo').css('background-image', 'url(' +  user_photo + ')')
         
       reader.readAsDataURL(input.files[0])
     
@@ -239,5 +237,6 @@ $ ->
     $('#user-form input[type="file"]').val('')
   
   resetFileInput()
+  $('#user-success').hide(0)
 
   return
