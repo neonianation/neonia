@@ -1,0 +1,37 @@
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '<%= ENV["FACEBOOK_KEY"] %>',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : false,
+    version    : 'v2.2'
+  });
+};
+
+(function(d, s, id){
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+$(function() {
+  $('a').click(function(e) {
+    e.preventDefault();
+    FB.login(function(response) {
+ 
+      alert(response.status);
+      
+      // Successfully logged into FB
+      if (response.status === 'connected') {
+        window.addError("You need to authorize");
+      } 
+      // Unfortunately not logged into FB
+      else {
+        window.addError("You need to authorize");
+      }
+      
+    }, { scope: 'public_profile,email'});
+  });
+});
