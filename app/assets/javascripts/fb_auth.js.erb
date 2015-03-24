@@ -12,24 +12,40 @@ window.fbAsyncInit = function() {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js";
+  //js.src = "//connect.facebook.net/en_US/sdk.js";
+  // for debugging
+  js.src = "//connect.facebook.net/en_US/sdk/debug.js"
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
 $(function() {
-  $('a').click(function(e) {
-    e.preventDefault();
+  $('.social-connect .facebook').click(function(e) {
+
     FB.login(function(response) {
- 
-      alert(response.status);
+      
+      window.clearErrors();
       
       // Successfully logged into FB
       if (response.status === 'connected') {
-        window.addError("You need to authorize");
+        window.addError("Successfully connected with Facebook.");
+        
+        // get name and email
+        FB.api('/me', {fields: "email, first_name"}, function(response) {
+          
+          // fill in the information
+          window.setUserFormName(response.first_name);
+          window.setUserFormEmail(response.email);
+          
+        });
+        
+        // get photo and insert
+        FB.api('me/picture?type=square&height=200', function(response) {
+          window.setUserFormImage(response.data.url);
+        });
       } 
       // Unfortunately not logged into FB
       else {
-        window.addError("You need to authorize");
+        window.addError("Connecting with Facebook failed.");
       }
       
     }, { scope: 'public_profile,email'});

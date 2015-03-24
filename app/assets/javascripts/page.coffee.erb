@@ -95,14 +95,14 @@ $ ->
   # INITIATE MANUALLY-FIRED SUBMIT BUTTON
   # changes submit button, so that we can manually fire upload
   oldButton = $('#user-form input[type="submit"]');
-  newButton = $("<button>")
+  newButton = $("<div>")
   newButton.html(oldButton.val())
   newButton.attr("class", oldButton.attr("class"))
   $('#user-form input[type="submit"]').replaceWith(newButton)
   $('#user-form .submit-form').attr("data-loading-text", "Loading...")
   
   # INIT VARIABLES
-  user_photo = 0
+  user_photo = null
   
   $('#user-form .submit-form').click ->
     
@@ -112,12 +112,16 @@ $ ->
     formData = new FormData()
     
     # add user photo
-    formData.append('user[photo]', user_photo)
+    if user_photo != null then formData.append('user[photo]', user_photo)
+    
+    
     # collect form data from text and checkbox
     $('#user-form input[type="text"]').each (index, element) =>
       formData.append($(element).attr("name"), $(element).val())
     $('#user-form input[type="checkbox"]').each (index, element) =>
       formData.append($(element).attr("name"), if $(element).is(':checked') then 1 else 0)
+    $('#user-form input[type="hidden"]').each (index, element) =>
+      formData.append($(element).attr("name"), $(element).val())
 
     $('#user-success .photo').css('background-image', 'url(' +  user_photo + ')')
 
@@ -195,11 +199,9 @@ $ ->
 
         
         image.onload = ->
-          user_photo = scaleImage(image, 200, 200)
+          setUserFormImage(scaleImage(image, 200, 200))
         
-          # preview image
-          $('#user-form .upload-photo').removeAttr("style")
-          $('#user-form .upload-photo').css('background-image', 'url(' +  user_photo + ')')
+
         
       reader.readAsDataURL(input.files[0])
     
@@ -238,5 +240,21 @@ $ ->
   
   resetFileInput()
   $('#user-success').hide(0)
-
+  
+  # SET USER FORM NAME
+  window.setUserFormName = (name) ->
+    $("#user-form .name input").val(name)
+    
+  # SET USER FORM EMAIL
+  window.setUserFormEmail = (email) ->
+    $("#user-form .email input").val(email);
+      
+  # SET USER FORM IMAGE
+  window.setUserFormImage = (imageData) ->
+    user_photo = imageData
+    
+    # preview image
+    $('#user-form .upload-photo').removeAttr("style")
+    $('#user-form .upload-photo').css('background-image', 'url(' +  user_photo + ')')
+  
   return
