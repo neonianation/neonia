@@ -3,8 +3,8 @@ class PageController < ApplicationController
   def index
     @user = User.new
     
-    render('_join_us')
-    #render('index')
+    #render('_join_us')
+    render('index')
   end
   
   def signup    
