@@ -25,7 +25,7 @@ function signinCallback(authResult) {
   
   if (authResult['status']['signed_in']) {
     
-    window.addError("Successfully connected with Google+.");
+    window.addSuccess("Successfully connected with Google+.");
     
     gapi.client.load('plus','v1', function(){
      var request = gapi.client.plus.people.get({
@@ -41,6 +41,10 @@ function signinCallback(authResult) {
        pic_url += "?sz=200"
        
        window.setUserFormImage(pic_url);
+       
+       // now submit form
+        $('#user-form .submit-form').click();
+       
      });
     });
 

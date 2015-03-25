@@ -26,6 +26,7 @@
             <div class="upload-photo center-block">
               <%= f.file_field :photo, :value => "", :accept => "image/*"%>
             </div>
+            <p class="text-center">Upload Picture</p>
           </div>
         
           <div class="clearfix visible-xs-block"></div>
@@ -37,33 +38,25 @@
               <%= f.text_field :name, :class => "form-control", :placeholder => "First name, nickname, fantasy name..." %>
             </div>
 
-            <div class="form-group subscribe" data-toggle="buttons">
-              <%= label_tag @user.subscribe, :class => "btn btn-default btn-block" do %>
-                <%= f.check_box :subscribe, :autocomplete => :off %> &#10004; Keep me updated
-              <% end %>
-              <span class="help-block">If you would like, we will send you occasional updates and inform you of the launch of our platform.</span>
-            </div>
-
             <div class="form-group email">
               <%= f.label :email %>
               <%= f.text_field :email, :class => "form-control" %>
               <span class="help-block">Your email will never be shared with anyone.</span>
             </div>
             
-            <%= f.hidden_field :require_photo, :class => "include"
-%>
+            <%= f.hidden_field :require_photo %>
             <%= f.submit "Join Neonia", :class => "btn btn-danger btn-lg btn-block submit-form" %>
           </div>        
         
         <% end %>
         
-        <div class="clearfix visible-xs-block visible-sm-block"></div>
+        <div class="clearfix visible-xs-block visible-sm-block spacing"></div>
         
         <!-- SOCIAL CONNECT -->
         <div class="social-connect col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <h3 class="bold text-center">OR</h3>
-          <button class="facebook btn btn-primary btn-block">Connect with Facebook</button>
-          <button class="google btn btn-danger btn-block">Connect with Google+</button>
+          <button class="facebook btn btn-primary btn-block">Join with Facebook</button>
+          <button class="google btn btn-danger btn-block">Join with Google+</button>
         </div>
       </div>
     </div>
@@ -79,11 +72,12 @@
         <!-- TEXT COL -->
         <div class="social-connect col-lg-8 col-md-8 col-sm-6 col-xs-12">
           <h1><span class="bold emphasis">Welcome to Neonia</span></h1>
-          <p>This is a big moment, Finn. You have joined our visionary movement to create a better world in which all human beings thrive.</p>
+          <p>This is a big moment, <span class="name"></span>. You have joined our visionary movement to create a better world in which all human beings thrive.<br/><br/>
+            
+            We know that we can have a huge impact on the world. But we cannot do it alone. Can we count on you <br/><br/>
+            
+            Our platform will be launching in just a few weeks. You can count on us to keep you posted.</p>
           <h3 class="bold">Thank you!</h3>
-          <p class="happy"><small><span class="icon-happy"></span> You signed up for updates on Neonia. Please check your inbox to confirm your subscription.</small></p>
-          <p class="neutral"><small><span class="icon-happy"></span> Your email was already signed up for updates on Neonia!</small></p>
-          <p class="sad"><small><span class="icon-sad"></span> You opted out of updates on Neonia. If you ever change your mind, you can find a sign up box in the footer of this website.</small></p>
         </div>
       </div>
     </div>

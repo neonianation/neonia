@@ -27,7 +27,10 @@ $(function() {
       
       // Successfully logged into FB
       if (response.status === 'connected') {
-        window.addError("Successfully connected with Facebook.");
+        window.addSuccess("Successfully connected with Facebook.");
+        
+        var $bio_request_completion = false;
+        var $pic_request_completion = false;
         
         // get name and email
         FB.api('/me', {fields: "email, first_name"}, function(response) {
@@ -35,6 +38,11 @@ $(function() {
             // fill in the information
             window.setUserFormName(response.first_name);
             window.setUserFormEmail(response.email);
+            $bio_request_completion = true;
+            
+            // if bio and pic request are complete, then submit form
+            if($bio_request_completion && $pic_request_completion)
+              $('#user-form .submit-form').click();
           }
           else {
             window.addError("Could not retrieve your name and email from Facebook.");
@@ -46,6 +54,11 @@ $(function() {
         FB.api('me/picture?type=square&height=200', function(response) {
           if (response && !response.error) {
             window.setUserFormImage(response.data.url);
+            $pic_request_completion = true;
+            
+            // if bio and pic request are complete, then submit form
+            if($bio_request_completion && $pic_request_completion)
+              $('#user-form .submit-form').click();
           }
           else {
             window.addError("Could not retrieve your profile picture from Facebook.");

@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  # Field for e-mail signup
-  attr_accessor :subscribe
   # require_photo is a hidden field that causes photo validation
   attr_accessor :require_photo
   
@@ -16,7 +14,7 @@ class User < ActiveRecord::Base
   validates_attachment_presence :photo, unless: "require_photo.nil?"
   validates_attachment_content_type :photo, :content_type => /\Aimage/, :message => "needs to be an image file"
   validates :name, presence: true
-  validates :email, presence: true, if: "subscribe == '1'"
+  validates :email, presence: true
   #validates :email, format: {
   #  with: /.*@.*\..*/, 
   #  message: "does not appear to be a correctly formatted address" }, if: "subscribe == '1'"
