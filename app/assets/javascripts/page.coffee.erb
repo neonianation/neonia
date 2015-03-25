@@ -65,7 +65,7 @@ $ ->
   ##############################################
   
   # show the correct tab when clicking on the new-world icons
-  $('#new-world .hover-icon').click ->
+  $('#new-world .hover-icon').hover ->
     if !$(this).hasClass("active")
       # make the right button highlighted
       $('#new-world .hover-icon.active').removeClass("active")
@@ -79,8 +79,8 @@ $ ->
   ################# JOIN US ####################
   ##############################################      
 
-  # CLEAR ERRORS
-  # clears all current errors from above form
+  # CLEAR ALERTS
+  # clears all current alerts from above form
   window.clearErrors = clearErrors = ->
     $("#user-form-errors").html("")
 
@@ -89,6 +89,14 @@ $ ->
   window.addError = addError = (message) ->
     alert = $("<div>")
     alert.addClass("alert alert-danger alert-dismissible fade in")
+    alert.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + message)
+    $("#user-form-errors").append(alert)  
+    
+  # ADD SUCCESS (message)
+  # adds an alert with message to form
+  window.addSuccess = addSuccess = (message) ->
+    alert = $("<div>")
+    alert.addClass("alert alert-success alert-dismissible fade in")
     alert.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + message)
     $("#user-form-errors").append(alert)  
     
@@ -104,6 +112,7 @@ $ ->
   # INIT VARIABLES
   user_photo = null
   
+  # SUBMIT USER FORM ON CLICK
   $('#user-form .submit-form').click ->
     
     # toggle loading state
@@ -118,9 +127,7 @@ $ ->
     # collect form data from text and checkbox
     $('#user-form input[type="text"]').each (index, element) =>
       formData.append($(element).attr("name"), $(element).val())
-    $('#user-form input[type="checkbox"]').each (index, element) =>
-      formData.append($(element).attr("name"), if $(element).is(':checked') then 1 else 0)
-    $('#user-form input[type="hidden"].include').each (index, element) =>
+    $('#user-form input[type="hidden"]').each (index, element) =>
       formData.append($(element).attr("name"), $(element).val())
 
     $('#user-success .photo').css('background-image', 'url(' +  user_photo + ')')
@@ -134,18 +141,6 @@ $ ->
       processData: false,
       type: 'POST'
     })
-  
-  # HIDE E-MAIL FIELD
-  # if subscribe checkbox is NOT checked, then hide e-mail field
-  if !$('#user-form input[type="checkbox"]').is(':checked')
-    $('#user-form .email').hide(0)
-  
-  # TOGGLE E-MAIL FIELD
-  # show e-mail field when checking subscribe checkbox
-  $('#user-form input[type="checkbox"]').change ->
-    $(this).parent().toggleClass("btn-success")
-    $(this).parent().next().slideToggle() # toggle help text
-    $('#user-form .email').slideToggle() # toggle email field
       
   # SHOW FOCUS ON FILE DIALOG
   # check for focus event on file select and then make parent active
@@ -207,7 +202,7 @@ $ ->
     
   # SCALE IMAGE (src, width, height
   # scales src image to width and height (box fill) and returns scaled_img
-  scaleImage = (source, width, height) ->
+  window.scaleImage = (source, width, height) ->
     canvas = document.createElement( 'canvas' )
     canvas.width = width
     canvas.height = height
@@ -239,6 +234,7 @@ $ ->
     $('#user-form input[type="file"]').val('')
   
   resetFileInput()
+  #$('#user-form').hide(0)
   $('#user-success').hide(0)
   
   # SET USER FORM NAME
