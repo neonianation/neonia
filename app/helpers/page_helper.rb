@@ -8,7 +8,7 @@ module PageHelper
       image_tag "facebook.png"
     end
     
-    html += link_to "https://plus.google.com/104547795772964098481/", :target => "_blank", :class => "social-icon" do
+    html += link_to "https://plus.google.com/104547795772964098481/", :target => "_blank", :class => "social-icon", :rel => "publisher" do
       image_tag "googleplus.png"
     end
 
