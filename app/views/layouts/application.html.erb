@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Neonia</title>
+  <title>Neonia &middot; Writing the Future of Humanity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -33,13 +33,28 @@
           <li><a href="#action-plan">Action Plan</a></li>
           <li><a href="#join-us">Join Us</a></li>
         </ul>
+        
+        <span class="navbar-right hidden-xs">
+          <%= social_bar.html_safe %>
+        </span>
       </div><!-- /.navbar-collapse -->
     </div>
   </nav>
   
-  <div style="overflow-x: hidden;">
-    <%= yield %>
+  <div id="content" style="overflow-x: hidden;">
+    <%= yield 
+%>
   </div>
 
+  
+  <footer>
+    <span class="bold emphasis title">Neonia &middot; </span>
+    <span class="social-bar-fix">
+      
+      <%= social_bar.html_safe %>
+
+    </span>
+    <p>Writing the Future of Humanity</p>
+  </footer>
 </body>
 </html>
