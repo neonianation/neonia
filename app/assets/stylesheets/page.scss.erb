@@ -9,6 +9,26 @@
   h1 {
     color: rgba(255,255,255,1);
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, .6);
+    
+    .main {    
+      .larger {
+        font-size: 45pt;
+      }
+      
+      div:nth-of-type(1) {
+        text-align: left;
+      }
+      
+      div:nth-of-type(2) {
+        text-align: center;
+      }
+      
+      div:nth-of-type(3) {
+        text-align: right;
+        font-size: 60pt;
+      }
+    }
+    
   }
   
   // dark overlay over background picture
@@ -57,7 +77,7 @@
     position: relative;
     overflow-x: hidden;
     
-    > hr {
+    > hr:first-of-type {
       position: absolute;
       left: 0px;
       width: 100%;

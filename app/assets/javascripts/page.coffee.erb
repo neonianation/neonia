@@ -6,7 +6,7 @@ $ ->
   initSkrollr = ->
     if !(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent or navigator.vendor or  window.opera)
       s = skrollr.init({
-      forceHeight: true
+      forceHeight: false
       })
 
       #$(document).on 'page:load', ->
@@ -65,16 +65,26 @@ $ ->
   ##############################################
   
   # show the correct tab when clicking on the new-world icons
-  $('#new-world .hover-icon').hover ->
-    if !$(this).hasClass("active")
+  
+  hover_over_icon = (icon) ->
+    if !icon.hasClass("active")
       # make the right button highlighted
       $('#new-world .hover-icon.active').removeClass("active")
-      $(this).addClass("active")
+      icon.addClass("active")
 
       # make the right tab show up
       $('#new-world .tab-pane.activated').removeClass("activated").hide()
-      $('#new-world .tab-pane:nth-child('+(parseInt($(this).attr("id").substr("new-world_icon_".length))+1)+')').addClass("activated").fadeIn()
+      $('#new-world .tab-pane:nth-child('+(parseInt(icon.attr("id").substr("new-world_icon_".length))+1)+')').addClass("activated").fadeIn()
+    return
+  
+  $('#new-world .hover-icon').click ->
+    hover_over_icon($(this))
+    return
 
+  $('#new-world .hover-icon').hover ->
+    hover_over_icon($(this))
+    return
+      
   ##############################################
   ################# JOIN US ####################
   ##############################################      
