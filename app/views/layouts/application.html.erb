@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head itemscope itemtype="http://schema.org/GovernmentOrganization">
   <title>Neonia &middot; Writing the Future of Humanity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
   
-  <!-- FB OG -->
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="Neonia">
+  <meta itemprop="description" content="Neonia &middot; Writing the Future of Humanity">
+  <meta itemprop="image" content="http://www.neonia.org/shared/facebook-og-image.png">  
+  
+  <!-- Twitter Dev Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@neonianation">
+  <meta name="twitter:title" content="Neonia &middot; Writing the Future of Humanity">
+  <meta name="twitter:description" content="We are building Neonia - a global, borderless, online country dedicated to empowering every human being to flourish.">
+  <meta name="twitter:image:src" content="http://www.neonia.org/shared/facebook-og-image.png">
+  
+  <!-- Open Graph data -->
   <meta property="og:url"                content="http://www.neonia.org/" />
   <meta property="og:title"              content="Neonia &middot; Writing the Future of Humanity" />
   <meta property="og:description"        content="We are building Neonia - a global, borderless, online country dedicated to empowering every human being to flourish." />
   <meta property="og:site_name"          content="Neonia" />
   <meta property="og:image"              content="http://www.neonia.org/shared/facebook-og-image.png" />
+
 </head>
 <body data-spy="scroll" data-target="#bs-example-navbar-collapse-1" data-offset="0">
   
