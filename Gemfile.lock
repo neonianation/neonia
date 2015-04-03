@@ -101,6 +101,10 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.18.1)
+    piwik_analytics (1.0.2)
+      actionpack
+      activesupport
+      rails (>= 3.0.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -183,6 +187,7 @@ DEPENDENCIES
   jquery-rails
   paperclip (~> 4.2)
   pg
+  piwik_analytics (~> 1.0.1)
   rails (= 4.2.0)
   remotipart (~> 1.2)
   sass-rails (~> 5.0)

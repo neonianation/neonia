@@ -50,6 +50,9 @@ gem "paperclip", "~> 4.2"
 # AJAX file uploading
 gem 'remotipart', '~> 1.2'
 
+# Piwik
+gem 'piwik_analytics', '~> 1.0.1'
+
 group :development, :test do
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
