@@ -12,7 +12,7 @@
 production:
   piwik:
     id_site: 1
-    url: neonia.org/piwik/
+    url: neonia.org/piwik
     use_async: true
     disabled: false
 
