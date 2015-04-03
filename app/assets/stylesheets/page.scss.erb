@@ -343,6 +343,9 @@
     
     .social-connect {
       border-top: 2px solid $gray-light;
+      button > span {
+        font-size: 20px; 
+      }
     }
     
     @media (min-width: $screen-md-min) {
@@ -350,6 +353,27 @@
       .social-connect { border-top: none; } 
       .input-fields { border-right: 2px solid $gray-light; }
     }
+  }
+  
+  // social share buttons after you joined
+  .social-share {
+    
+    margin-bottom: 10px;
+    
+    div {
+      margin-bottom: 5px;
+      margin-top: 5px;
+      
+    }
+    
+    // add transparent line right of icon
+    .btn > span {
+      margin-top: 2px;
+      padding-bottom: 1px;
+      padding-right: 5px;
+      border-right: 1px solid rgba(255,255,255, .5);
+    }
+    
   }
   
   // create some spacing below clearfixes
@@ -380,14 +404,14 @@ quote {
 
 .btn.tw-color {
   color: #FFF;
-  background-color: #00aced;
-  border-color: #0084b4;
+  background-color: darken(#00aced, 10%);
+  border-color: darken(#0084b4, 10%);
 }
 
 .btn.tw-color:hover, .btn.tw-color:focus, .btn.tw-color:active {
   color: #FFF;
-  background-color: darken(#00aced, 10%);
-  border-color: darken(#0084b4, 10%);
+  background-color: darken(#00aced, 20%);
+  border-color: darken(#0084b4, 20%);
 }
 
 .btn.gp-color {
