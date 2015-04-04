@@ -289,8 +289,8 @@
   
   .photo {
     width: 100%;
-    max-width: 200px;
-    height: 200px;
+    max-width: 150px;
+    height: 150px;
     border-radius: 8px;
     background-repeat: no-repeat;
     background-position: center;
@@ -303,6 +303,7 @@
 
     background-color: white;
     background-image: url(<%= asset_data_uri 'user_icon.png' %>);
+    background-size: 150px 150px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     
     > input {
@@ -324,7 +325,7 @@
     
     &:hover:after, &:focus:after, &:active:after, &.active:after {
       position: relative;
-      top: -200px;
+      top: -150px;
       left: 10px;
       font-family: 'icomoon';
       content: "\e9c3"; //upload icon
@@ -376,6 +377,7 @@
     
   }
   
+
   // create some spacing below clearfixes
   .clearfix.spacing {
     margin-bottom: 20px;
@@ -424,4 +426,8 @@ quote {
   color: #FFF;
   background-color: darken(#d34836, 10%);
   border-color: darken(#d34836, 20%);
+}
+
+.border-right {
+  border-right: 1px solid rgba(0,0,0,.2);
 }
