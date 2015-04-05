@@ -1,7 +1,8 @@
-$ ->
+ready = ->
   
   'use strict'
     
+  SKROLLR_INSTANCE = null
   
   initSkrollr = ->
     if !(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent or navigator.vendor or  window.opera)
@@ -43,18 +44,31 @@ $ ->
       #This event is triggered right before we jump/animate to a new hash.
       #change: (newHash, newTopPosition) ->
       })
+      return s
   
   #homeResize function makes sure home bg image is same height as dark overlay
   homeResize = ->
     if $("#home > .overlay").height() < $(window).height()
       $("#home > .overlay").height($(window).height())    
     $("#home").height($("#home > .overlay").height())
-    initSkrollr()
-    $('[data-spy="scroll"]').each ->
-      $spy = $(this).scrollspy('refresh')
   
-  $(window).resize(homeResize).triggerHandler "resize"
-  homeResize()
+  refreshScrollSpy = ->
+    $('[data-spy="scroll"]').each ->
+      $spy = $(this).scrollspy('refresh')    
+  
+  initAction = ->
+    homeResize()
+    refreshScrollSpy()
+    SKROLLR_INSTANCE = initSkrollr()
+  
+  resizeAction = ->
+    homeResize()
+    SKROLLR_INSTANCE.refresh()
+    refreshScrollSpy()
+    
+    
+  initAction()  
+  $(window).resize(resizeAction).triggerHandler "resize"
   
   # close mobile menu on click. adapted from: http://stackoverflow.com/questions/16680543/hide-twitter-bootstrap-nav-collapse-on-click
   $('.nav a').on 'click', ->
@@ -264,3 +278,6 @@ $ ->
     $('#user-form .upload-photo').css('background-image', 'url(' +  user_photo + ')')
   
   return
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

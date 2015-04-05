@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.larger {
+  font-size: 45pt;
+}
+
 #home {
   background: url(<%= asset_data_uri 'backdrop.jpg' %>) no-repeat center center fixed;
   background-size: cover;
@@ -10,10 +14,7 @@
     color: rgba(255,255,255,1);
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 1), 0px 0px 5px rgba(0, 0, 0, .6);
     
-    .main {    
-      .larger {
-        font-size: 45pt;
-      }
+    .main { 
       
       div:nth-of-type(1) {
         text-align: left;
@@ -54,9 +55,18 @@
   }
 }
 
+#call-to-action {
+  padding-left: 15%;
+  padding-right: 15%;
+  overflow: hidden;
+  * {
+    position: relative; 
+  }
+}
+
 // spacing between home and first section
 #spacing {
-  height: 50px;
+  height: 30px;
   width: 100%;
   position: relative;
 }
@@ -430,4 +440,9 @@ quote {
 
 .border-right {
   border-right: 1px solid rgba(0,0,0,.2);
+}
+
+// call to action has no rounded corners
+.well.not-rounded {
+  border-radius: 0px;
 }
