@@ -258,6 +258,7 @@ ready = ->
   
   resetFileInput()
   #$('#user-form').hide(0)
+  #$('#user-success').removeClass('hide')
   $('#user-success').hide(0)
   
   # SET USER FORM NAME
@@ -276,6 +277,10 @@ ready = ->
     $('#user-form .upload-photo').removeAttr("style")
     $('#user-form .upload-photo').css('background-image', 'url(' +  user_photo + ')')
 
+  return  
+    
 $(document).ready(ready)
 $(document).on('page:load', ready)
-window.onload = window.homeResize;
+window.onload = ->
+  window.homeResize()
+  return
