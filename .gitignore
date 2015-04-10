@@ -18,6 +18,8 @@
 .cache
 /public/assets/*
 /public/system/*
+/backups
+/backups/*
 
 # Ignore all .env files
 .env*
