@@ -75,12 +75,12 @@
       </div>
     </div>
     
-    <div id="user-success" class="well">
+    <div id="user-success" class="well hide" style="display: none;">
       <div class="row ">
         
         <!-- THUNDERCLAP -->
         <div class="col-lg-4 col-md-5 col-sm-12 border-right text-center hidden-xs hidden-sm">
-          <iframe frameborder='0' height='540px' src='https://www.thunderclap.it/projects/24555-writing-the-future-of-humanity/embed' width='250px'></iframe>
+          <iframe id="thunderclap-frame" frameborder='0' height='540px' src='https://www.thunderclap.it/projects/24555-writing-the-future-of-humanity/embed' width='250px'></iframe>
         </div>
         
         <div class="col-lg-8 col-md-7 col-sm-12">
@@ -98,7 +98,7 @@
               <h1><span class="bold emphasis">Welcome to Neonia</span></h1>
               <p>This is a big moment, <span class="name"></span>. You have joined our visionary movement to create a better world in which all human beings thrive. Our platform will launch in the near future and you can count on us to keep you posted.</p>    
               <div class="visible-xs-block visible-sm-block text-center">
-                <a target="_blank" href="https://www.thunderclap.it/projects/24555-writing-the-future-of-humanity" class="btn btn-danger">Join our Thunderclap</a>              
+                <a target="_blank" href="https://www.thunderclap.it/projects/24555-writing-the-future-of-humanity" class="btn btn-danger" onclick="Piwik.getAsyncTracker().trackGoal(1);">Join our Thunderclap</a>              
               </div>
             </div>
           </div>
@@ -140,15 +140,6 @@
           </div>
         </div>
       </div>
-      
-      <div class="row social-share">
-
-
-        <div class="col-md-8">
-
-
-      </div>
-    </div>
       
     </div>
 
