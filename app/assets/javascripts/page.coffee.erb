@@ -47,7 +47,7 @@ ready = ->
       return s
   
   #homeResize function makes sure home bg image is same height as dark overlay
-  homeResize = ->
+  window.homeResize = homeResize = ->
     if $("#home > .overlay").height() < $(window).height()
       $("#home > .overlay").height($(window).height())    
     $("#home").height($("#home > .overlay").height())
@@ -56,18 +56,17 @@ ready = ->
     $('[data-spy="scroll"]').each ->
       $spy = $(this).scrollspy('refresh')    
   
-  initAction = ->
+  window.initAction = initAction = ->
     homeResize()
     refreshScrollSpy()
     SKROLLR_INSTANCE = initSkrollr()
   
   resizeAction = ->
-    homeResize()
     SKROLLR_INSTANCE.refresh()
     refreshScrollSpy()
+    homeResize()
     
-    
-  initAction()  
+  initAction()
   $(window).resize(resizeAction).triggerHandler "resize"
   
   # close mobile menu on click. adapted from: http://stackoverflow.com/questions/16680543/hide-twitter-bootstrap-nav-collapse-on-click
@@ -276,8 +275,7 @@ ready = ->
     # preview image
     $('#user-form .upload-photo').removeAttr("style")
     $('#user-form .upload-photo').css('background-image', 'url(' +  user_photo + ')')
-  
-  return
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+window.onload = window.homeResize;
