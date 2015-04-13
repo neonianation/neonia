@@ -3,7 +3,7 @@ class PageController < ApplicationController
   def index
     
     # determine if post thunderclap
-    @is_post_thunderclap = Time.now > Time.parse("2015-04-13 8AM EDT")
+    @is_post_thunderclap = Time.now < Time.parse("2015-04-13 8AM EDT")
     
     
     # create new user for join-us form
