@@ -28,7 +28,10 @@
   
     <div class="row user-samples">
       <% @member_sample.each_with_index do |member, i| %>
-        <div class="user-image col-xs-2 col-sm-2 col-md-2 col-lg-2"><%= image_tag member.photo %></div>
+        <div class="user-image col-xs-4 col-sm-2 col-md-2 col-lg-2"><%= image_tag member.photo %></div>
+        <% if i%3==0 %>
+          <div class="clearfix visible-xs-block"></div>
+        <% end %>
       <% end %>
     </div>
 
