@@ -15,25 +15,54 @@
       
       >a global, borderless, online country dedicated to empowering every human being to flourish.</h2>
   
-<hr style="border-bottom:1px solid black;"/>
+  <hr style="border-bottom:1px solid black;"/>
+
+  <% if @is_post_thunderclap
+    u_count = User.count %>
+    <h3 class="bold text-center">
+      <span class="Single"
+            data-bottom-top="a"
+            data-center-top="a"
+            data-emit-events
+            ><%= u_count %></span> people have already joined us. <span class="emphasis">With you we could be <%= u_count+1 %>.</span></h3>
   
+    <div class="row user-samples">
+      <% @member_sample.each_with_index do |member, i| %>
+        <div class="user-image col-xs-2 col-sm-2 col-md-2 col-lg-2"><%= image_tag member.photo %></div>
+      <% end %>
+    </div>
+
+    <br/>
+  
+    <p class="text-center"
+        data--50-bottom-top="transform: scale(0); opacity: 0.0;"
+        data--100-bottom-top="transform: scale(1); opacity: 1.0;"
+       >
+
+      <a target="_blank" href="#join-us" class="btn btn-lg btn-danger text-center">Join Neonia</a>
+    </p>  
+  <% # ELSE SHOW THUNDERCLAP
+    else %>
+
   <h3 class="bold text-center">
-    On April 13 we will blast this message to 110k+ people worldwide</h3>
-      
-  <p class="text-center"
-      data-50-center-top="transform: scale(0); opacity: 0.0;"
-      data-0-center-top="transform: scale(1); opacity: 1.0;"
-      data-anchor-target="#call-to-action"
-     >
+      On April 13 we will blast this message to 120k+ people worldwide</h3>
 
-    <a target="_blank" href="https://www.thunderclap.it/projects/24555-writing-the-future-of-humanity" class="btn btn-lg btn-danger text-center"  onclick="Piwik.getAsyncTracker().trackGoal(1);">Join our Thunderclap</a>
-  </p>
+    <p class="text-center"
+        data-50-center-top="transform: scale(0); opacity: 0.0;"
+        data-0-center-top="transform: scale(1); opacity: 1.0;"
+        data-anchor-target="#call-to-action"
+       >
+
+      <a target="_blank" href="https://www.thunderclap.it/projects/24555-writing-the-future-of-humanity" class="btn btn-lg btn-danger text-center"  onclick="Piwik.getAsyncTracker().trackGoal(1);">Join our Thunderclap</a>
+    </p>
+  <% end %>
 </div>
-
+  
 <%= render partial: "new_world" %>
 <%= render partial: "action_plan" %>
-<%= render partial: "join_us" %>
-
-<script type="text/javascript">
-  //window.onload = window.homeResize;
-</script>
+<%= if @is_post_thunderclap
+      render partial: "join_us"
+    else
+      render partial: "join_us_pre"
+    end
+%>
