@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       :original => "200x200#" },
     :convert_options => {
       :original => "-quality 75 -strip" },
-  :default_url => "/images/:style/missing.png"
+  :default_url => "/shared/user_icon.png"
   
   # Validations
   validates_attachment_presence :photo, unless: "require_photo.nil?"

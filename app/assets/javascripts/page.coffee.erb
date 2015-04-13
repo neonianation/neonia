@@ -219,7 +219,7 @@ ready = ->
 
         
         image.onload = ->
-          setUserFormImage(scaleImage(image, 200, 200))
+          setUserFormImage(scaleImage(image, 150, 150))
         
 
         
@@ -261,6 +261,7 @@ ready = ->
   resetFileInput()
   #$('#user-form').hide(0)
   #$('#user-success').removeClass('hide')
+  #$('#user-success').show(0)
   $('#user-success').hide(0)
   
   # SET USER FORM NAME
@@ -285,7 +286,8 @@ ready = ->
       'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     }
   })
-    
+
+  
   return  
     
 $(document).ready(ready)

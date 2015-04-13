@@ -1,9 +1,20 @@
 class PageController < ApplicationController
   
   def index
+    
+    # determine if post thunderclap
+    @is_post_thunderclap = Time.now < Time.parse("2015-04-13 8AM EDT")
+    
+    
+    # create new user for join-us form
     @user = User.new
     
-    #render('_join_us')
+    
+    # get sample of members for call to action area
+    if @is_post_thunderclap
+      @member_sample = User.order("RANDOM()").limit(6)
+    end
+    
     render('index')
   end
   
@@ -28,7 +39,7 @@ class PageController < ApplicationController
     respond_to do |format|
           
       # subscribe to mailchimp only if there are no errors
-      if @user.valid?
+      if @user.valid? && Rails.env.production?
         begin
           puts "Connecting to Mailchimp..."
           gb = Gibbon::API.new
