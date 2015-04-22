@@ -1,28 +1,161 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Set up Droplet on DigitalOcean
+-> neonia-web
+-> 5gb
+-> private networking, ipv6
+-> Ruby on Rails
+-> ssh
 
-Things you may want to cover:
+2. Connect to droplet
 
-* Ruby version
+3. set up swap
+https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04
+1. sudo fallocate -l 512M /swapfile
+2. sudo chmod 600 /swapfile
+3. sudo mkswap /swapfile
+4. sudo swapon /swapfile
+5. verify: sudo swapon -s
+6. make permanent: sudo echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
+7. set swapiness: sudo sysctl vm.swappiness=10
+8. retain swapiness after reboot: sudo echo "vm.swappiness=10" >> /etc/sysctl.conf
+9. set cache pressure  to 50: sudo sysctl vm.vfs_cache_pressure=50
+10. retain cache pressure after reboot: sudo echo "vm.vfs_cache_pressure=50" >> /etc/sysctl.conf
+11. reboot & test:
+  sudo swapon -s
+  cat /proc/sys/vm/swappiness
+  cat /proc/sys/vm/vfs_cache_pressure
 
-* System dependencies
+4. Remove MYSQL (http://askubuntu.com/a/172516)
+sudo apt-get remove --purge mysql-server mysql-client mysql-common
+sudo apt-get autoremove
+sudo apt-get autoclean
 
-* Configuration
+5. Install POSTGRESQL
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
 
-* Database creation
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
 
-* Database initialization
+log into psql:
+sudo -i -u postgres
+psql
 
-* How to run the test suite
+create user:
+CREATE USER username WITH PASSWORD 'password' CREATEDB;
 
-* Services (job queues, cache servers, search engines, etc.)
+quit: \q + exit
 
-* Deployment instructions
+6. Install PHP (step 3: https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04)
+1. sudo apt-get install php5-fpm php5-mysql
+2. sudo nano /etc/php5/fpm/php.ini
+-> uncomment "cgi.fix_pathinfo=1" and set to "0"
+3. sudo service php5-fpm restart
 
-* ...
+7. Configure NGINX
+1. sudo nano /etc/nginx/sites-enabled/default
+2. add this BEFORE the closing parens of server
+    # pass the PHP scripts to FastCGI server listening on the php-fpm socket
+    location ~ \.php$ {
+            try_files $uri =404;
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+    }
+3. sudo service nginx restart
 
+8. Clone files
+sudo apt-get install git
+cd /home/rails
+rm -R *
+rm -R .*
+git clone https://github.com/neonianation/neonia.git .
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+9. Install imagemagick
+sudo apt-get install imagemagick
+
+10. Prepare for launch
+cd /home/rails
+sudo apt-get install libpq-dev #required for postgres!
+chmod 777 public #write permission for paperclip+imagemagick
+bundle install
+rake assets:precompile RAILS_ENV=production
+nano .env.production
+  DBNAME="databasename"
+  DBUSER="username"  
+  DBPASSWORD="password"
+  SECRET_KEY_BASE="secretkey"
+  FACEBOOK_KEY="fbappid"
+  GOOGLE_KEY="googleappid"
+  MAILCHIMP_API_KEY="mailchimpkey"
+  MAILCHIMP_LIST_ID="mailchimplistid"
+  IMAGEMAGICK_PATH="/usr/bin/convert"
+rake RAILS_ENV=production db:setup
+
+11. Setup cron tasks (https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-on-a-vps)
+1.
+sudo apt-get update
+sudo apt-get install cron
+
+2. crontab -e; press 1 for nano
+
+3. append to bottom of cron
+SHELL=/bin/bash
+HOME=/
+
+# RESET TMP FILES EVERY 20 MINUTES
+0,20,40 * * * * find /tmp/* -mmin +5 -delete
+
+12. Set up DB backups
+
+1. create symbol link
+ln -s /var/lib/postgresql/backups /home/rails/backups
+sudo chown -R postgres:postgres /var/lib/postgresql/backups
+
+2. sudo -i -u postgres
+
+3. crontab -e
+SHELL=/bin/bash
+HOME=/var/lib/postgresql/
+
+#BACKUP DATABASE
+@daily pg_dump neonia_prod_db_284195 > backups/db_backup_$(date +"\%Y-\%m-\%d-\%Hh\%Mm").bak
+
+#DELETE DB FILES OLDER THAN 5 DAYS
+@daily find backups/* -mtime +5 -delete
+
+12. Install Piwik (https://www.digitalocean.com/community/tutorials/how-to-install-piwik-on-an-ubuntu-12-04-cloud-server)
+1.
+apt-get update
+apt-get upgrade
+2. cd /home/rails/public
+3. wget http://builds.piwik.org/latest.zip
+4. unzip latest.zip
+5. rm latest.zip
+6. chown -R www-data:www-data /home/rails/public/piwik
+7. sudo apt-get install php5-gd
+8. sudo apt-get install freetype*
+
+9. sudo mysql
+10. CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+11. CREATE DATABASE databasename;
+12. GRANT ALL PRIVILEGES ON databasename.* TO 'user'@'localhost';
+13. FLUSH PRIVILEGES;
+14. quit;
+15. DROPLETIP/piwik/index.php
+16. follow all steps
+
+17. install geoip
+sudo apt-get install php5-geoip php5-dev libgeoip-dev
+sudo pecl install geoip
+echo "extension=geoip.so" >> /etc/php5/fpm/php.ini
+echo "geoip.custom_directory=/home/rails/public/piwik/misc" >> /etc/php5/fpm/php.ini
+service php5-fpm restart
+
+cd /home/rails/public/piwik/misc
+wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+gzip -d GeoLiteCity.dat.gz
+mv GeoLiteCity.dat GeoIPCity.dat
+
+go to IPADDRESS/piwik/index.php?module=UserCountry&action=adminIndex&idSite=1 and select "GeoIP (PECL)"
