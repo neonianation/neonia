@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   
-  match 'attempt_login' => 'session#attempt_login', :via => :post
+  get 'signup' => 'session#register'
+  post 'check_email' => 'session#check_email'
+  patch 'create_account' => 'session#create_account'
+  
+  post 'attempt_login' => 'session#attempt_login'
   get 'login' => 'session#show_login'
   
-  match 'signup' => 'page#signup', :via => :post
+  post 'signup' => 'page#signup'
   
   root 'page#index'
   

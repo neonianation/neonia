@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   #  with: /.*@.*\..*/, 
   #  message: "does not appear to be a correctly formatted address" }, if: "subscribe == '1'"
   #validates :email, uniqueness: true, if: "subscribe == '1'"
-  
+  validates :reg_code, uniqueness: true, allow_nil: true
+  validates :username, uniqueness: true, length: { in: 3..15 }, format: { with: /\A\w*\z/,
+    message: "must consist of only numbers, letters, and underscores" }, allow_nil: true
+  validates :password, length: { minimum: 6 } 
   
 end

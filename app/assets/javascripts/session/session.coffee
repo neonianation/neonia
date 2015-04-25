@@ -6,6 +6,7 @@ ready = ->
   $('#signInDiv .submit-form').prop('disabled', false)
   $('#error_message').css('opacity', '0');
   
+  
   # SUBMIT USER FORM ON CLICK
   $('#signInDiv .submit-form').click ->
     # toggle loading state

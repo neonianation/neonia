@@ -18,3 +18,4 @@
 //= require skrollr
 //= require skrollr.menu
 //= require_tree .
+//= require ../shared

@@ -1,5 +1,7 @@
 class PageController < ApplicationController
   
+  include ApplicationHelper
+  
   def index
     
     # determine if post thunderclap
@@ -36,6 +38,9 @@ class PageController < ApplicationController
     @user.name = params[:user][:name]
     @user.photo = params[:user][:photo] 
     @user.password = "notset"
+    begin
+      @user.reg_code = generate_reg_code
+    end while User.exists?(reg_code: @user.reg_code)
     
     respond_to do |format|
           

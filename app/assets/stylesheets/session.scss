@@ -31,10 +31,15 @@ html {
       }
     }
     
-    #signInDiv {
+    .mainDiv {
       padding: 30px 0px;
     }
     
+  }
+  
+  //username field on signup page always lowercase
+  form #user_username, form #username {
+    text-transform: lowercase;
   }
   
   footer {

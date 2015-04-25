@@ -1,0 +1,29 @@
+
+ready = ->
+  
+  'use strict'
+
+  # CLEAR ALERTS
+  # clears all current alerts from above form
+  window.clearErrors = clearErrors = ->
+    $("#user-form-errors").html("")
+
+  # ADD ERROR (message)
+  # adds an error with message to form
+  window.addError = addError = (message) ->
+    alert = $("<div>")
+    alert.addClass("alert alert-danger alert-dismissible fade in")
+    alert.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + message)
+    $("#user-form-errors").append(alert)  
+    
+  # ADD SUCCESS (message)
+  # adds an alert with message to form
+  window.addSuccess = addSuccess = (message) ->
+    alert = $("<div>")
+    alert.addClass("alert alert-success alert-dismissible fade in")
+    alert.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + message)
+    $("#user-form-errors").append(alert)  
+    
+    
+$(document).ready(ready)
+$(document).on('page:load', ready)

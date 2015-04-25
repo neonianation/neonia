@@ -4,4 +4,5 @@ module SessionHelper
     uri.query = params.to_query
     uri.to_s
   end
+  
 end
