@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  has_secure_password
+  
   # require_photo is a hidden field that causes photo validation
   attr_accessor :require_photo
   
