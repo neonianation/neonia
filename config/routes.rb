@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  match 'attempt_login' => 'session#attempt_login', :via => :post
+  get 'login' => 'session#show_login'
+  
   match 'signup' => 'page#signup', :via => :post
   
   root 'page#index'

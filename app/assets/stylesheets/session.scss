@@ -1,0 +1,47 @@
+// Place all the styles related to the session controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+#session {
+  position: static;
+  min-height: 100%;
+  
+  $header-height: 130px;
+  $footer-height: 126px;
+  
+  margin-bottom: $footer-height;
+  
+  #content {
+    height: 100%;
+    
+    .center-center {
+      display: table;
+      &> div {
+        display: table-row;
+        &> div {
+          display: table-cell;
+          vertical-align: middle;
+          text-align: center;
+        }
+      }
+    }
+    
+    #signInDiv {
+      padding: 50px 0px;
+    }
+    
+  }
+  
+  footer {
+    position: absolute;
+    bottom: 0px;
+    height: $footer-height;
+    display: block;
+  }
+  
+}

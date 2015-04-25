@@ -1,0 +1,36 @@
+<div class="text-center">
+  <h1 class="bold emphasis larger">Welcome to Neonia!</h1>
+  <p>To continue please sign in...</p>
+</div>
+
+
+  <div class="row" id="signInDiv">
+
+    <div class="col-md-3 col-sm-2 col-xs-1"></div>
+
+    <div class="col-md-6 col-sm-8 col-xs-10 text-center">
+      <%= form_tag('attempt_login', remote: true) do %>
+        <div class="form-group">
+          <%= label_tag(:username) %>
+          <%= text_field_tag 'username', nil, class: "form-control" %>
+        </div>
+
+
+        <div class="form-group">
+          <%= label_tag(:password) %>
+          <%= password_field_tag 'password', nil, class: "form-control" %>
+        </div>
+
+        <%= submit_tag "Log In", :"data-loading-text" => "Signing you in...", :class => "submit-form btn btn-lg btn-danger btn-block" %>
+      
+      <% end %>
+
+      <br/>
+      <p class="text-muted pull-left">I do not have an account</p>
+      <p class="text-muted pull-right">I forgot my password</p>
+    
+    </div>  
+    <div class="col-md-3 col-sm-2 col-xs-1"></div>          
+  </div>
+
+
