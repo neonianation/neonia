@@ -35,6 +35,7 @@ class PageController < ApplicationController
     @user.require_photo = params[:user][:require_photo]
     @user.name = params[:user][:name]
     @user.photo = params[:user][:photo] 
+    @user.password = "notset"
     
     respond_to do |format|
           

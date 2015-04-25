@@ -3,23 +3,27 @@
   <p>To continue please sign in...</p>
 </div>
 
-
-  <div class="row" id="signInDiv">
+<div class="row" id="signInDiv">
 
     <div class="col-md-3 col-sm-2 col-xs-1"></div>
-
+  
     <div class="col-md-6 col-sm-8 col-xs-10 text-center">
+      
+      <p id="error_message" class="text-danger text-center">Username or password incorrect.</p>
+      
       <%= form_tag('attempt_login', remote: true) do %>
         <div class="form-group">
           <%= label_tag(:username) %>
           <%= text_field_tag 'username', nil, class: "form-control" %>
         </div>
-
-
+      
         <div class="form-group">
           <%= label_tag(:password) %>
           <%= password_field_tag 'password', nil, class: "form-control" %>
         </div>
+      
+        <%= hidden_field_tag :sig, @discourse_sig %>
+        <%= hidden_field_tag :sso, @discourse_sso %>
 
         <%= submit_tag "Log In", :"data-loading-text" => "Signing you in...", :class => "submit-form btn btn-lg btn-danger btn-block" %>
       
