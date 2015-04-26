@@ -24,8 +24,10 @@ class PageController < ApplicationController
 
     # do we already have a record with this email address?
     # if so, then load that record and we'll just update the name and photo
-    if User.exists?(:email => params[:user][:email])
-      @user = User.find_by_email(params[:user][:email])
+    @user = User.find_by_email ( params[:user][:email])
+    if @user
+      @user.errors.add(:base, "Someone with this email has already joined Neonia")
+      return
         
     # if not, then we'll create a new user
     else

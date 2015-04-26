@@ -5,13 +5,20 @@ class User < ActiveRecord::Base
   # require_photo is a hidden field that causes photo validation
   attr_accessor :require_photo
   
+  # paths for saving photo
+  attachment_virtual_path = "/system/attachments/:hashed_path/:id/:style/:basename"
+  
+  attachment_real_path = ":rails_root/public" + attachment_virtual_path
+  
     # Photo
   has_attached_file :photo,
     :styles => {
       :original => "200x200#" },
     :convert_options => {
       :original => "-quality 75 -strip" },
-  :default_url => "/shared/user_icon.png"
+  :default_url => "/shared/user_icon.png",
+  :path => attachment_real_path,
+  :url => attachment_virtual_path
   
   # Validations
   validates_attachment_presence :photo, unless: "require_photo.nil?"
