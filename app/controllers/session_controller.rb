@@ -50,7 +50,7 @@ class SessionController < ApplicationController
   
   def show_login
     
-    return unless params[:sig].present? and params[:sso].present? and OpenSSL::HMAC.hexdigest('sha256', ENV["DISCOURSE_SSO_SECRET"], sso) == sig
+    return unless params[:sig].present? and params[:sso].present? and OpenSSL::HMAC.hexdigest('sha256', ENV["DISCOURSE_SSO_SECRET"], params[:sso]) == params[:sig]
     
     @discourse_sig = URI.escape params[:sig]
     @discourse_sso = URI.escape params[:sso]
