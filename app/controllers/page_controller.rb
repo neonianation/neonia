@@ -22,8 +22,11 @@ class PageController < ApplicationController
   
   def signup    
 
+    #make email lowercase
+    params[:user][:email] = params[:user][:email].downcase
+    
     # do we already have a record with this email address?
-    # if so, then load that record and we'll just update the name and photo
+    # if so, then load that record and we'll just update the name and photo    
     @user = User.find_by_email ( params[:user][:email])
     if @user
       @user.errors.add(:base, "Someone with this email has already joined Neonia")

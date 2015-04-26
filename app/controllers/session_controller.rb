@@ -7,6 +7,15 @@ class SessionController < ApplicationController
 
   layout 'session'
   
+  def resend_reg_code
+    @user = User.find_by_email(params[:email].downcase)
+    
+    #send mail
+    
+  end
+  
+  
+  
   def register
     return unless params[:reg].present?
     

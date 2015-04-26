@@ -4,41 +4,123 @@
 </div>
 
 
-  <div class="row mainDiv" id="signInDiv">
+<div class="row mainDiv" id="signInDiv">
 
-    <div class="col-md-3 col-sm-2 col-xs-1"></div>
-  
-    <div class="col-md-6 col-sm-8 col-xs-10 text-center">
-      <% if not (@discourse_sig and @discourse_sso) %>
-        <%= render "login_steps" %>
-      <% else %>
-        <p id="error_message" class="text-danger text-center">Username or password incorrect.</p>
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
 
-        <%= form_tag('attempt_login', remote: true) do %>
-          <div class="form-group">
-            <%= label_tag(:username) %>
-            <%= text_field_tag 'username', nil, class: "form-control" %>
-          </div>
+  <div class="col-md-6 col-sm-8 col-xs-10 text-center">
+    <% if not (@discourse_sig and @discourse_sso) %>
+      <%= render "login_steps" %>
+    <% else %>
+      <p class="error_message text-danger text-center">Username or password incorrect.</p>
 
-          <div class="form-group">
-            <%= label_tag(:password) %>
-            <%= password_field_tag 'password', nil, class: "form-control" %>
-          </div>
+      <%= form_tag('attempt_login', remote: true) do %>
+        <div class="form-group">
+          <%= label_tag(:username) %>
+          <%= text_field_tag 'username', nil, class: "form-control" %>
+        </div>
 
-          <%= hidden_field_tag :sig, @discourse_sig %>
-          <%= hidden_field_tag :sso, @discourse_sso %>
+        <div class="form-group">
+          <%= label_tag(:password) %>
+          <%= password_field_tag 'password', nil, class: "form-control" %>
+        </div>
 
-          <%= submit_tag "Log In", :"data-loading-text" => "Signing you in...", :class => "submit-form btn btn-lg btn-danger btn-block" %>
+        <%= hidden_field_tag :sig, @discourse_sig %>
+        <%= hidden_field_tag :sso, @discourse_sso %>
 
-        <% end %>
+        <%= submit_tag "Log In", :"data-loading-text" => "Signing you in...", :class => "submit-form btn btn-lg btn-danger btn-block" %>
 
-        <br/>
-        <p class="text-muted pull-left">I do not have an account</p>
-        <p class="text-muted pull-right">I forgot my password</p>
+      <% end %>
+
+      <br/>
+      <p class="pull-left">
+        <a id="helpAccountButton">I do not have an account</a>
+      </p>
+      <p class="pull-right"><a id="helpPasswordButton">I forgot my password</a></p>
     
     <% end %>
   </div>  
   <div class="col-md-3 col-sm-2 col-xs-1"></div>          
 </div>
+
+<!-- helpAccountDiv: Instructions on how to create a Neonia account -->
+<div class="row mainDiv well" id="helpAccountDiv">
+
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+
+  <div class="col-md-6 col-sm-8 col-xs-10">
+      <h3></h3>
+      <h3 class="text-info bold">"Help, I do not have an account!" <small class="pull-left bold close-button">&lt; Back</small></h3>
+
+      <hr/>
+    
+      <p>No worries! We will get you set up right away. First, let's start off by figuring out if you have already joined Neonia.</p>
+    
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="bold"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              I already joined Neonia but I do not have an account
+            </a></h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              You have joined Neonia on the homepage by submitting your name, email, and picture? Perfect, then you are in the right place.<br/><br/>
+              
+              You should have received an email to your inbox with a registration code and a link to sign up for a Neonia account. If you still have that code, <%= link_to "you can enter it here", {:action => "register"}, :class => "bold" %>.<br/><br/>
+              
+              If you no longer have the code, we can send it to you in an email. Just enter your email address below and the code will be right in your inbox.
+              
+            <p class="error_message text-danger">No one with this email address has joined Neonia.</p>
+              
+            <%= form_tag({:action => "resend_reg_code"}, :class => "form-inline", remote: true) do %>
+              <div class="form-group">
+                <%= label_tag(:email) %>
+                <%= text_field_tag 'email', nil, class: "form-control" %>
+              </div>
+              <%= submit_tag "OK", :"data-loading-text" => "OK", :class => "submit-form btn btn-danger" %>
+            <% end %>
+              
+            <div class="alert alert-success">Awesome! We've sent your registration code to <span class="email"></span>. You should receive it in a minute.</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="bold"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              I have not yet joined Neonia
+            </a></h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              You have not joined Neonia yet? What a pity, we would absolutely love to have you!<br/><br/>
+              
+              Fortunately, joining us in quick and easy. Just <%= link_to "visit our homepage and fill out the \"Join Us\" form", {:controller => "page", :action => "index", :anchor => "join-us"}, :class => "bold" %>. You can connect with your Facebook account, Google+ account, or manually enter your name, email, and picture.<br/><br/>
+              
+              Once you have joined us, we will send you an email with a registration code that enables you to create a Neonia account. And once you have got that, you can participate in the development and implementation of Neonia through <%= link_to "Neonia Core", ENV["DISCOURSE_URL"], :class => "bold" %>.
+            </div>
+          </div>
+        </div>
+    </div>
+    
+  </div>  
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>          
+</div>
+
+<!-- helpPassworDiv: Instructions on how to reset your password for an existing account -->
+<div class="row mainDiv well" id="helpPasswordDiv">
+
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>
+
+  <div class="col-md-6 col-sm-8 col-xs-10">
+      <h3 class="text-info bold">"Oh no, I forgot my password!" <small class="pull-left bold close-button">&lt; Back</small></h3>
+    
+      <hr/>
+      
+    
+  </div>  
+  <div class="col-md-3 col-sm-2 col-xs-1"></div>          
+</div>
+
 
 

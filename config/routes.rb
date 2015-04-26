@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
+  post 'resend_reg_code' => 'session#resend_reg_code'
+  post 'reset_password' => 'session#reset_password'
+  
   get 'signup' => 'session#register'
-  post 'check_email' => 'session#check_email'
+  #post 'check_email' => 'session#check_email'
   patch 'create_account' => 'session#create_account'
   
   post 'attempt_login' => 'session#attempt_login'
