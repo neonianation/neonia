@@ -56,7 +56,7 @@ class PageController < ApplicationController
           
           # if user already subscribed, then run update
           if e.code == 214
-            @user.errors.add(:base, "Someone with this email has already joined Neonia")
+            #@user.errors.add(:base, "Someone with this email has already joined Neonia")
           # else run validations and add error message
           else
             @user.errors.add(:base, e.message)
