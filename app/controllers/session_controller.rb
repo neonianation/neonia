@@ -12,8 +12,6 @@ class SessionController < ApplicationController
     
     @user = User.find_by_reg_code(params[:reg])
     
-    @REG_CODE = params[:reg]
-    
   end
   
   def create_account
@@ -21,7 +19,7 @@ class SessionController < ApplicationController
     
     @user = User.find_by_reg_code(params[:user][:reg_code])
     
-    return unless @user
+    return unless @user and @user.username.blank?
     
     @user.username = params[:user][:username].downcase
     @user.password = params[:user][:password]
@@ -31,6 +29,7 @@ class SessionController < ApplicationController
     
     if @user.save
       @account_creation_was_successful = true
+      @redirect_url = url_for :action => 'register', :reg => @user.reg_code
     end
     
   end
@@ -80,7 +79,7 @@ class SessionController < ApplicationController
     # Check if this is a valid+legit request from forum.neonia.org
     if sig.present? and sso.present? and OpenSSL::HMAC.hexdigest('sha256', ENV["DISCOURSE_SSO_SECRET"], sso) == sig
       nonce = Base64.decode64(sso)
-      sso = Base64.encode64(nonce + '&username=' + user.username + '&email=' + user.email + '&external_id=' + user.id.to_s + '&name=' + user.name)
+      sso = Base64.encode64(nonce + '&username=' + user.username + '&email=' + user.email + '&external_id=' + user.id.to_s + '&name=' + user.name + 'avatar_url=' + user.photo.url + 'avatar_force_update=true')
       sig = OpenSSL::HMAC.hexdigest('sha256', ENV["DISCOURSE_SSO_SECRET"], sso)
       return_params = { sso: sso, sig: sig }
       @redirect_path = generate_url( ENV["DISCOURSE_URL"] + "session/sso_login", return_params )

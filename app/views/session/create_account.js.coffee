@@ -14,5 +14,5 @@ window.addError("<%= error %>")
 
 <% end %>
 <% elsif @account_creation_was_successful %>
-window.location.href = window.location.href
+window.location.href = "<%= @redirect_url %>"
 <% end %>
