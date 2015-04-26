@@ -51,7 +51,7 @@ class PageController < ApplicationController
         begin
           puts "Connecting to Mailchimp..."
           gb = Gibbon::API.new
-          gb.lists.subscribe({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => @user.email}, :merge_vars => {:NAME => @user.name, :REG_CODE => @user.reg_code}, :double_optin => false})
+          gb.lists.subscribe({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => @user.email}, :merge_vars => {:NAME => @user.name, :REG_CODE => @user.reg_code}, :update_existing => true, :double_optin => false})
         rescue Gibbon::MailChimpError => e
           
           # if user already subscribed, then run update
