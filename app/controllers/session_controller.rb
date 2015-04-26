@@ -50,6 +50,8 @@ class SessionController < ApplicationController
   
   def show_login
     
+    return unless params[:sig].present? and params[:sso].present? and OpenSSL::HMAC.hexdigest('sha256', ENV["DISCOURSE_SSO_SECRET"], sso) == sig
+    
     @discourse_sig = URI.escape params[:sig]
     @discourse_sso = URI.escape params[:sso]
     
@@ -85,7 +87,7 @@ class SessionController < ApplicationController
       @redirect_path = generate_url( ENV["DISCOURSE_URL"] + "session/sso_login", return_params )
     else
       # redirect to info page informing about clicking log-in from forum.
-      @redirect_path = root_path
+      @redirect_path = url_for :action => 'show_login'
     end
     
   end

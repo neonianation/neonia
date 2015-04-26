@@ -45,30 +45,7 @@
             
             <hr/>
           
-            <div class="row">
-              
-              <%
-                steps = [
-                  'Visit ' + link_to("Neonia Core", ENV["DISCOURSE_URL"]) + ' and find the "Log In" button in the upper right corner.<br/>' + image_tag("step1login.png"),
-                  'You will be redirect to neonia.org and prompted to enter your username and password.<br/>' + image_tag("step2login.png"),
-                  'Once your credentials have been authenticated, you will be signed in and redirect back to Neonia Core. Time to join the conversation!<br/>' + image_tag("step3login.png")]
-              %>
-              
-              <% steps.each_with_index do |step, i| %>
-                <!-- STEP <%= i+1 %> -->
-                <div class="col-xs-2 col-md-1">
-                  <p class="large bold"><%= i+1 %>.</p>
-                </div>
-                <div class="col-xs-10 col-md-11">
-                  <p><%= step.html_safe %></p>
-                </div>
-          
-              <div class="clearfix"></div>
-              <br/>
-              
-              <% end %>
-              
-            </div>
+            <%= render "login_steps" %>
             
             
           <% else %>
