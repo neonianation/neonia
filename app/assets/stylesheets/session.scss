@@ -40,6 +40,10 @@ html {
         margin-top: 0px !important;
       }
       
+      form .email {
+        text-transform: lowercase;
+      }
+      
       .close-button {
         //background-color: black; 
         //color: lightgray;

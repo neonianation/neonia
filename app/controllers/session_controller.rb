@@ -10,10 +10,24 @@ class SessionController < ApplicationController
   def resend_reg_code
     @user = User.find_by_email(params[:email].downcase)
     
-    #send mail
+    return unless @user
+    
+    # send reg code email
     
   end
   
+  def reset_password
+    @user = User.find_by_email(params[:email].downcase)
+    
+    if !@user
+      @user = User.find_by_username(params[:email].downcase)
+    end  
+    
+    return unless @user
+    
+    # send password reset email
+    
+  end
   
   
   def register
