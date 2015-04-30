@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
+  get 'reset-password' => 'session#create_new_password'
+  patch 'reset-password' => 'session#save_new_password', as: 'save_password'
+  
   post 'resend_reg_code' => 'session#resend_reg_code'
-  post 'reset_password' => 'session#reset_password'
+  post 'password_recovery_request' => 'session#password_recovery_request'
   
   get 'signup' => 'session#register'
   #post 'check_email' => 'session#check_email'

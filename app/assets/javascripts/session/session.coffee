@@ -38,7 +38,5 @@ ready = ->
     # toggle loading state
     $(this).button('loading')
     
-  $('#helpPasswordButton').trigger 'click'
-    
 $(document).ready(ready)
 $(document).on('page:load', ready)

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   
   # require_photo is a hidden field that causes photo validation
   attr_accessor :require_photo
+  attr_accessor :password_required
   
   # paths for saving photo
   attachment_virtual_path = "/system/attachments/:hashed_path/:id/:style/:basename"
@@ -32,6 +33,10 @@ class User < ActiveRecord::Base
   validates :reg_code, uniqueness: true, allow_nil: true
   validates :username, uniqueness: true, length: { in: 3..15 }, format: { with: /\A\w*\z/,
     message: "must consist of only numbers, letters, and underscores" }, allow_nil: true
-  validates :password, length: { minimum: 6 } 
+  validates :password, length: { minimum: 6 }, :if => :password_required
   
+  def registration_id
+    return OpenSSL::HMAC.hexdigest('sha256', ENV["REGISTER_ACCT_SECRET"], email)[0, 7]
+  end
+    
 end

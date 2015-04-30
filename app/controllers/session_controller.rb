@@ -1,5 +1,7 @@
 class SessionController < ApplicationController
   include SessionHelper
+  include ApplicationHelper
+  include MailerHelper
   
   require 'openssl'
   require 'base64'
@@ -8,15 +10,20 @@ class SessionController < ApplicationController
   layout 'session'
   
   def resend_reg_code
+    @has_user_already_registered = true
+    
     @user = User.find_by_email(params[:email].downcase)
     
-    return unless @user
+    return unless @user and @user.username.blank?
+  
+    @has_user_already_registered = false
     
     # send reg code email
+    mail_registration_code_request @user
     
   end
   
-  def reset_password
+  def password_recovery_request
     @user = User.find_by_email(params[:email].downcase)
     
     if !@user
@@ -25,50 +32,58 @@ class SessionController < ApplicationController
     
     return unless @user
     
+    # generate pwd recovery code and deadline
+    @user.pwd_recov_code = generate_code
+    @user.pwd_recov_date = Time.now
+    
     # send password reset email
-    
-  end
-  
-  
-  def register
-    return unless params[:reg].present?
-    
-    @user = User.find_by_reg_code(params[:reg])
-    
-  end
-  
-  def create_account
-    return unless params[:user][:reg_code].present?
-    
-    @user = User.find_by_reg_code(params[:user][:reg_code])
-    
-    return unless @user and @user.username.blank?
-    
-    @user.username = params[:user][:username].downcase
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirm]
-    
-    @account_creation_was_successful = false
-    
-    if @user.save
-      @account_creation_was_successful = true
-      @redirect_url = url_for :action => 'register', :reg => @user.reg_code
+    if @user.save(:validate => false)
+      mail_password_recovery_request @user
     end
     
   end
   
-#  def check_email
-#    @user = User.find_by_email(params[:email])
-#    
-#    return unless @user
-#    
-#    @user_is_already_registered = false
-#    
-#    if @user.username.present?
-#      @user_is_already_registered = true
-#      return
-#    end
-#  end
+  def create_new_password
+    @valid_request = is_valid_password_recovery_request?
+  end
+  
+  def save_new_password
+    
+    if is_valid_password_recovery_request?
+      @user = User.find_by_username(params[:username])
+      @user.password_required = true
+      @user.password = params[:user][:password]
+      @user.password_confirmation = params[:user][:password_confirm]
+      @user.pwd_recov_code = nil
+      @user.pwd_recov_date = nil
+      if @user.save
+        @user_password_reset_successful = true 
+      end
+    end
+  end
+  
+  def register
+    is_valid_registration_request?    
+  end
+  
+  def create_account
+    if is_valid_registration_request? 
+    
+      @user.password_required = true
+      @user.username = params[:user][:username].downcase
+      @user.password = params[:user][:password]
+      @user.password_confirmation = params[:user][:password_confirm]
+
+      @account_creation_was_successful = false
+
+      if @user.save
+        @account_creation_was_successful = true
+        @redirect_url = url_for :action => 'register', :id => @user.registration_id, :code => @user.reg_code
+      end
+    
+    end
+    
+  end
   
   
   def show_login
@@ -115,6 +130,40 @@ class SessionController < ApplicationController
     
   end
   
-  # def infoPageOnMissingSIGSSO
+  private
+  
+  # checks if the password recovery request is valid
+  def is_valid_password_recovery_request?
+        # end unless we've got a user and a pwd_recov_code
+    return false unless params[:username].present? and params[:code].present?
+
+    @user = User.find_by_username(params[:username])
+
+    # end unless we found a user with that username
+    return false unless @user
+
+    # validate pwd_recov_code and expiration
+    return false unless @user.pwd_recov_code.present? and @user.pwd_recov_date.present?
+
+    request_exp = @user.pwd_recov_date + 24.hours
+
+    return false unless @user.pwd_recov_code == params[:code] and request_exp > Time.now 
+
+    # validations successful, return true
+    return true
+  end
+  
+  # returns true if the registration id and code are valid
+  def is_valid_registration_request?
+    return false unless params[:code].present? && params[:id].present?
+    
+    @user = User.find_by_reg_code(params[:code])
+    
+    return false unless @user and @user.username.blank?
+    
+    return false unless @user.registration_id == params[:id]
+    
+    return true
+  end
     
 end

@@ -71,7 +71,7 @@
               
               If you no longer have the code, we can send it to you in an email. Just enter your email address below and the code will be right in your inbox.<br/><br/>
             <p>
-              Resend Registration Code <span class="error_message text-danger">&middot; No one with this email address has joined Neonia.</span>
+              Resend Registration Code <span class="error_message text-danger">&middot; <span class="text">No one with this email address has joined Neonia.</span></span>
             </p>
               
             <%= form_tag({:action => "resend_reg_code"}, :class => "form-horizontal", remote: true) do %>
@@ -127,7 +127,7 @@
         Reset Password <span class="error_message text-danger">&middot; No one with this email address has joined Neonia.</span>
       </p>
 
-      <%= form_tag({:action => "reset_password"}, :class => "form-horizontal", remote: true) do %>
+      <%= form_tag({:action => "password_recovery_request"}, :class => "form-horizontal", remote: true) do %>
         <div class="form-group">
           <div class="col-xs-12 col-sm-8">
             <%= text_field_tag 'email', nil, class: "email form-control", :placeholder => "Enter your email or username" %>
@@ -139,7 +139,7 @@
         </div>
       <% end %>
 
-      <div class="alert alert-success">Awesome! We've sent your registration code to <span class="email"></span>. You should receive it in a minute.</div>
+      <div class="alert alert-success">Awesome! We've sent your registration code to your email address. You should receive it in a minute.
       </div>    
     
   </div>  

@@ -1,6 +1,6 @@
 module ApplicationHelper
   
-  def generate_reg_code
+  def generate_code
     return generate_half_reg_code + '-' + generate_half_reg_code
    
   end

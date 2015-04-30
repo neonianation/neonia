@@ -41,7 +41,7 @@
           <h1><span class="bold emphasis">Welcome back, <span class="name"><%= @user.name %></span>!</span></h1>
           
           <% if @user.username.present? %>
-            <p>You have successfull created your Neonia account. You can now join us in creating a world in which all of us can unfold their full potential.</p>
+            <p>You have successfull created your Neonia account. You can now join us in creating a world in which all of us can unfold our full potential.</p>
             
             <hr/>
           
@@ -74,8 +74,9 @@
                 <%= f.password_field :password_confirm, class: "form-control" %>
               </div>
 
-              <%= f.hidden_field :reg_code %>
-
+              <%= hidden_field_tag :id, params[:id] %>
+              <%= hidden_field_tag :code, params[:code] %>
+          
               <%= submit_tag "Create Account", :"data-loading-text" => "Creating account...", :class => "submit-form btn btn-lg btn-danger btn-block" %>
 
             <% end %>
