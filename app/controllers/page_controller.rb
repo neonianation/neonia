@@ -42,7 +42,7 @@ class PageController < ApplicationController
     @user.require_photo = params[:user][:require_photo]
     @user.name = params[:user][:name]
     @user.photo = params[:user][:photo] 
-    @user.password = "notset"
+    @user.password = generate_code
     begin
       @user.reg_code = generate_code
     end while User.exists?(reg_code: @user.reg_code)
