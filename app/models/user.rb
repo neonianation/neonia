@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     # Photo
   has_attached_file :photo,
     :styles => {
-      :original => "200x200#" },
+      :original => "150x150#" },
     :convert_options => {
       :original => "-quality 75 -strip" },
   :default_url => "/shared/user_icon.png",

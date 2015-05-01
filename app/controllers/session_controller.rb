@@ -43,7 +43,7 @@ class SessionController < ApplicationController
     
   end
   
-  def create_new_password
+  def create_new_password    
     @valid_request = is_valid_password_recovery_request?
   end
   
@@ -78,7 +78,11 @@ class SessionController < ApplicationController
 
       if @user.save
         @account_creation_was_successful = true
-        @redirect_url = url_for :action => 'register', :id => @user.registration_id, :code => @user.reg_code
+        return_params = {
+          :id => @user.registration_id,
+          :code => @user.reg_code
+          }
+        @redirect_path = generate_url(register_path, return_params)
       end
     
     end

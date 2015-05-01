@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'resend_reg_code' => 'session#resend_reg_code'
   post 'password_recovery_request' => 'session#password_recovery_request'
   
-  get 'signup' => 'session#register'
+  get 'register' => 'session#register', as: 'register'
   #post 'check_email' => 'session#check_email'
   patch 'create_account' => 'session#create_account'
   

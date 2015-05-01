@@ -14,5 +14,10 @@ window.addError("<%= error %>")
 
 <% end %>
 <% elsif @account_creation_was_successful %>
-window.location.href = "<%= @redirect_url %>"
+
+# hack to get the correct de-coded redirect url
+div = document.createElement('div')
+div.innerHTML = '<%= @redirect_path %>'
+decoded_url = div.firstChild.nodeValue
+window.location.href = decoded_url
 <% end %>

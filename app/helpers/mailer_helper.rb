@@ -72,6 +72,7 @@ module MailerHelper
     puts "Sending Welcome Mail to " + user.email
     puts sending
         
+    return sending[0]
     
   end
   

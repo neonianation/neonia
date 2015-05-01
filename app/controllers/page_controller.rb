@@ -1,21 +1,16 @@
 class PageController < ApplicationController
   
   include ApplicationHelper
+  include MailerHelper
   
   def index
-    
-    # determine if post thunderclap
-    @is_post_thunderclap = Time.now > Time.parse("2015-04-13 8AM EDT")
-    
     
     # create new user for join-us form
     @user = User.new
     
     
     # get sample of members for call to action area
-    if @is_post_thunderclap
-      @member_sample = User.order("RANDOM()").limit(6)
-    end
+    @member_sample = User.order("RANDOM()").limit(6)
     
     render('index')
   end
@@ -50,26 +45,31 @@ class PageController < ApplicationController
     respond_to do |format|
           
       # subscribe to mailchimp only if there are no errors
-      if @user.valid? && Rails.env.production?
-        begin
-          puts "Connecting to Mailchimp..."
-          gb = Gibbon::API.new
-          gb.lists.subscribe({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => @user.email}, :merge_vars => {:NAME => @user.name, :REG_CODE => @user.reg_code}, :update_existing => true, :double_optin => false})
-        rescue Gibbon::MailChimpError => e
-          
-          # if user already subscribed, then run update
-          if e.code == 214
-            #@user.errors.add(:base, "Someone with this email has already joined Neonia")
-          # else run validations and add error message
-          else
-            @user.errors.add(:base, e.message)
-          end
+      if @user.valid?
+        puts "Will now attempt sending email to validate email address..."
+        email_data = mail_welcome_mail @user
+        
+        if email_data["status"] != "sent"
+          @user.errors.add(:base, "We had a problem sending you an email, are you certain that your email address is valid?")
         end
+        
+      end
+      # if @user.valid? && Rails.env.production?
+        # begin  
+          # puts "Connecting to Mailchimp..."
+          # gb = Gibbon::API.new
+          # gb.lists.subscribe({:id => ENV['MAILCHIMP_LIST_ID'], :email => {:email => @user.email}, :merge_vars => {:NAME => @user.name, :REG_CODE => @user.reg_code}, :update_existing => true, :double_optin => false})
+         # rescue Gibbon::MailChimpError => e
+            # @user.errors.add(:base, e.message)
+          #end
+        #end
+      #end
+      
+      if not @user.errors.any?
+        puts "Saving user to database..."
+        @user.save
       end
       
-      puts "Saving user to database..."
-      
-      @user.save unless @user.errors.any?
       format.js
     end
   end
