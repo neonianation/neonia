@@ -15,6 +15,9 @@ window.addError("<%= error %>")
 <% end %>
 <% elsif @account_creation_was_successful %>
 
+# count registration Piwik goal
+Piwik.getAsyncTracker().trackGoal(7)
+
 # hack to get the correct de-coded redirect url
 div = document.createElement('div')
 div.innerHTML = '<%= @redirect_path %>'
