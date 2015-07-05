@@ -30,7 +30,7 @@ class SessionController < ApplicationController
       @user = User.find_by_username(params[:email].downcase)
     end  
     
-    return unless @user
+    return unless @user and @user.username.present?
     
     # generate pwd recovery code and deadline
     @user.pwd_recov_code = generate_code

@@ -45,7 +45,8 @@ module MailerHelper
   def mail_welcome_mail user
     
     m = Mandrill::API.new
-    template_name = "welcome-to-neonia"
+#    template_name = "welcome-to-neonia"
+    template_name = "welcome-to-neonia-forum-down"
     template_content = []
     
     merge_vars = [{
