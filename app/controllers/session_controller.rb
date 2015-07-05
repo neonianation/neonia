@@ -9,6 +9,8 @@ class SessionController < ApplicationController
 
   layout 'session'
   
+  before_action :forum_unavailable
+  
   def resend_reg_code
     @has_user_already_registered = true
     
@@ -168,6 +170,11 @@ class SessionController < ApplicationController
     return false unless @user.registration_id == params[:id]
     
     return true
+  end
+  
+  def forum_unavailable
+    render 'forum_unavailable'
+    return
   end
     
 end

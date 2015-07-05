@@ -8,7 +8,7 @@
 
   <div class="col-md-3 col-sm-2 col-xs-1"></div>
 
-  <div class="col-md-6 col-sm-8 col-xs-10 text-center"><!--
+  <div class="col-md-6 col-sm-8 col-xs-10 text-center">
     <% if not (@discourse_sig and @discourse_sso) %>
       <%= render "login_steps" %>
     <% else %>
@@ -38,17 +38,13 @@
       </p>
       <p class="pull-right"><a id="helpPasswordButton">I forgot my password</a></p>
     
-    <% end %>-->
-    
-    <h1>Hi there!</h1>
-    <p>Sorry, the forum is currently not available. We have decided to shut it down while we are working on the next features. This saves us $10/month. We will relaunch the forum once there is more activity.</p>
-    <p>Our apologies. Please hold tight.</p>
+    <% end %>
   </div>  
   <div class="col-md-3 col-sm-2 col-xs-1"></div>          
 </div>
 
 <!-- helpAccountDiv: Instructions on how to create a Neonia account -->
-<!--<div class="row mainDiv well" id="helpAccountDiv">
+<div class="row mainDiv well" id="helpAccountDiv">
 
   <div class="col-md-3 col-sm-2 col-xs-1"></div>
 
@@ -113,10 +109,10 @@
     
   </div>  
   <div class="col-md-3 col-sm-2 col-xs-1"></div>          
-</div>-->
+</div>
 
 <!-- helpPassworDiv: Instructions on how to reset your password for an existing account -->
-<!--<div class="row mainDiv well" id="helpPasswordDiv">
+<div class="row mainDiv well" id="helpPasswordDiv">
 
   <div class="col-md-3 col-sm-2 col-xs-1"></div>
 
@@ -149,7 +145,7 @@
       <div class="alert alert-success pwd-recov">Awesome! We've sent your password recovery code to your email address. You should receive it in a minute.
       </div>    
     
-  </div>  -->
+  </div>  
   <div class="col-md-3 col-sm-2 col-xs-1"></div>          
 </div>
 
